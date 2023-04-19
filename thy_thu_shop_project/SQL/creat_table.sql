@@ -46,12 +46,11 @@ CREATE TABLE  `thy_thu`.`account_role` (
   `name_product` VARCHAR(45) NOT NULL,
    `price` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
-   `image` varchar(45),
+   `image` longtext,
   `flag_delete` BIT,
   `id_category` int,
   `id_origin` int ,
   foreign key(`id_category`) references category(`id_category`),
-  foreign key(`id_origin`) references origin(`id_origin`),
   PRIMARY KEY (`id_product`));
   
   CREATE TABLE `thy_thu`.`order` (
@@ -59,6 +58,7 @@ CREATE TABLE  `thy_thu`.`account_role` (
   code_order varchar(45),
   day_order varchar(45),
   flag_delete BIT,
+  time_order datetime,
   total_price int,
   delivery_status varchar(45),
    `id_account` INT,
