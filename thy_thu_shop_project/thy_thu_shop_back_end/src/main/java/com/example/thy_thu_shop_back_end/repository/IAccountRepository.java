@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IAccountRepository extends JpaRepository<Account,Long> {
 
-    @Query(value = "select a.* from account where a.email = ?1",nativeQuery = true)
+    @Query(value = "select a.* from account a where a.email = ?1",nativeQuery = true)
     Account findAccountByEmail(String username);
 
 

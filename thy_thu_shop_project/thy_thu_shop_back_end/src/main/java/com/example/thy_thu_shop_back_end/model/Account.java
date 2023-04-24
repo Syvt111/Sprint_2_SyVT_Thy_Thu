@@ -13,8 +13,8 @@ public class Account {
     private Long accountId;
     @Column(columnDefinition = "varchar(50)", unique = true, nullable = false)
     private String email;
-    @Column(columnDefinition = "varchar(50)", nullable = false)
-    private String password = "12345678";
+    @Column(columnDefinition = "text", nullable = false)
+    private String password ;
     @Column(columnDefinition = "varchar(50)", unique = true, nullable = false)
     private String username;
     @Column(columnDefinition = "bit(1)", nullable = false)

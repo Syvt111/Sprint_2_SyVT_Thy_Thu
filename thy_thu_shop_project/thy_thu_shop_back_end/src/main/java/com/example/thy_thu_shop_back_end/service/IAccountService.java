@@ -14,4 +14,7 @@ public interface IAccountService {
     void save(Account account);
 
     void delete(Long id);
+    Account findAccountByEmail(String username);
+    void saveNewPassword(String newPassword, Long id);
+    boolean checkPassword(String password, String oldPassword);
 }

@@ -1,6 +1,6 @@
 <div class="sticky-top">
   <!-- Start Top Nav -->
-  <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block " id="templatemo_nav_top" >
+  <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block " id="templatemo_nav_top">
     <div class="container text-light">
       <div class="w-100 d-flex justify-content-between">
         <div>
@@ -10,29 +10,37 @@
           <a class="navbar-sm-brand text-light text-decoration-none" href="tel:0971444990">0971444990</a>
         </div>
         <div>
-          <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
-          <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
-          <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
-          <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
+          <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i
+            class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+          <a class="text-light" href="https://www.instagram.com/" target="_blank"><i
+            class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+          <a class="text-light" href="https://twitter.com/" target="_blank"><i
+            class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
+          <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i
+            class="fab fa-linkedin fa-sm fa-fw"></i></a>
         </div>
       </div>
     </div>
+
   </nav>
   <!-- Close Top Nav -->
 
   <!-- Header -->
   <nav class="navbar navbar-expand-lg navbar-light shadow bg-light ">
-    <div class="container d-flex justify-content-between align-items-center">
-
-      <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+    <div class="d-flex justify-content-between align-items-center" style="margin-left: 3%">
+      <a class="navbar-brand text-success logo h1 align-self-center"
+         routerLink="/home">
         Thy Thư Shop
       </a>
-
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+    </div>
+    <div class=" d-lg-flex justify-content-lg-between align-self-center collapse navbar-collapse flex-fill align-items-center">
+      <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+           id="templatemo_main_nav">
         <div class="flex-fill">
           <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
             <li class="nav-item">
@@ -51,6 +59,9 @@
               <a class="nav-link" href="contact.html">Thắt lưng</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="contact.html">Kính</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="contact.html">Phụ kiện khác</a>
             </li>
           </ul>
@@ -67,35 +78,56 @@
           <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
             <i class="fa fa-fw fa-search text-dark mr-2"></i>
           </a>
-          <a class="nav-icon position-relative text-decoration-none" href="#">
+          <a class="nav-icon position-relative text-decoration-none" routerLink="/product/cart">
             <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">7</span>
+            <span
+              class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">7</span>
           </a>
-          <a class="nav-icon position-relative text-decoration-none" href="#">
-            <i class="fa fa-fw fa-user text-dark mr-3"></i>
-            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">+99</span>
-          </a>
+
         </div>
       </div>
-
+    </div>
+    <div [hidden]="!isLoggedIn" class="d-flex align-items-center" style="margin-right: 2%">
+      <div class="dropdownUser">
+        <div class="n-item d-flex align-items-center">
+          <i class="bi bi-person-lines-fill mx-2"></i>
+          <img
+            src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/329957660_518849393693507_1360756579603794620_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cR6Ayxd2uOsAX_x2oXQ&_nc_oc=AQmjY3VojpTE5I4hDMLkHtodTsRVklNIz_EbAyIq5cnUf4XEhzXGs2oYAGH3UG7UeU8&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfATcWvJcv_aMC-25CZiGpOeFGDoZgdjoNfh4qT1K7ilgg&oe=644AA680"
+            class="rounded-circle mb-3" style="width: 50px;"
+            alt="Avatar"/>
+          <span style="color: #eb5d1e" class="m-2"><b> {{accountName}}</b></span></div>
+        <div class="dropdown-content p-0">
+          <div class=" getstarted" routerLink="/security/change-password">
+            <button class="btn">Đổi mật khẩu</button>
+          </div>
+          <div class=" getstarted" (click)="logOut()">
+            <button class="btn">Đăng xuất</button>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
+
 </div>
+
 <!-- Close Header -->
 
 <!-- Modal -->
-<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="w-100 pt-1 mb-5 text-right">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <form action="" method="get" class="modal-content modal-body border-0 p-0">
+    <div class="modal-content modal-body border-0 p-0">
       <div class="input-group mb-2">
         <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
         <button type="submit" class="input-group-text bg-success text-light">
           <i class="fa fa-fw fa-search text-white"></i>
         </button>
       </div>
-    </form>
+    </div>
   </div>
 </div>
+
+

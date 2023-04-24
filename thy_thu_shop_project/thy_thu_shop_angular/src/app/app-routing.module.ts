@@ -7,7 +7,7 @@ import {LoginComponent} from './component/security-authentication/login/login.co
 
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent},
+  {path: 'home', component: HomePageComponent},
   {path: 'product/detail', component: ProductDetailComponent},
   {path: 'product/cart', component: CartComponent},
   {path: 'login', component: LoginComponent},
