@@ -15,7 +15,7 @@ public class ImageService implements IImageService {
 
     @Override
     public Image findById(int id) {
-        return null;
+        return iImageRepository.findById(id).get();
     }
 
     @Override
@@ -24,12 +24,17 @@ public class ImageService implements IImageService {
     }
 
     @Override
-    public void save(Image image) {
+    public List<Image> findImageByProductId(Long productId) {
+        return iImageRepository.findImageByProductId(productId);
+    }
 
+    @Override
+    public void save(Image image) {
+        iImageRepository.save(image);
     }
 
     @Override
     public void delete(int id) {
-
+        iImageRepository.deleteById(id);
     }
 }

@@ -131,82 +131,48 @@
         </p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 col-md-4 mb-4">
-        <div class="card h-100">
-          <a href="shop-single.html">
-            <img
-              src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/301285112_570915137976009_2766275044305895550_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=5Lzpk-9w93cAX8o4kDZ&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfCI8nsbdi9Er68uabtyexG09AZy0uoqxWTm_ddjuE98zA&oe=6441A32A"
-              class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <ul class="list-unstyled d-flex justify-content-between">
-              <li>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-muted fa fa-star"></i>
-                <i class="text-muted fa fa-star"></i>
-              </li>
-              <li class="text-muted text-right">300.000k</li>
-            </ul>
-            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Prada</a>
-            <p class="card-text">
-              Mắt kính trông phim, mắt đen made in Italy
-            </p>
-            <p class="text-muted">Reviews (24)</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-4 mb-4">
-        <div class="card h-100">
-          <a href="shop-single.html">
-            <img
-              src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-6/301382587_571781064556083_8653467509568970373_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=52aMBL0QdI4AX_bdLUq&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfCDBHhBbWCTIp0XJvDqU4XekMgdo-UHi-mds7mfimGE6A&oe=644158DF"
-              class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <ul class="list-unstyled d-flex justify-content-between">
-              <li>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-muted fa fa-star"></i>
-                <i class="text-muted fa fa-star"></i>
-              </li>
-              <li class="text-muted text-right">200.000k</li>
-            </ul>
-            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Thắt lưng levis</a>
-            <p class="card-text">
-              Thắt lưng levis da bò, đồng nguyên khối
-            </p>
-            <p class="text-muted">Reviews (48)</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-4 mb-4">
-        <div class="card h-100">
-          <a href="shop-single.html">
-            <img
-              src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/301222792_570904174643772_4471682753101749454_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Vj-CE7uMVa8AX_zFj15&_nc_ht=scontent.fdad1-1.fna&oh=00_AfDwfFxfoGeq320Bilw7BfAjKWSDQc_ZQjo2AN2oBWk99Q&oe=64429E87"
-              class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <ul class="list-unstyled d-flex justify-content-between">
-              <li>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-              </li>
-              <li class="text-muted text-right">280.000k</li>
-            </ul>
-            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Túi cầm tay vip 1</a>
-            <p class="card-text">
-              Túi xách cầm tay, ngang 22cm, đứng 12cm
-            </p>
-            <p class="text-muted">Reviews (74)</p>
+    <div class="carousel-inner product-links-wap" role="listbox">
+      <div class="carousel-item active">
+        <div class="row" >
+          <div class="p-2 pb-3 col-md-2" *ngFor="let product of products">
+            <div class="product-wap card rounded-0">
+              <div class="card rounded-0">
+<!--                <img class="card-img rounded-0 img-fluid" src="../../../assets/img/shop_08.jpg">-->
+                <img class="card-img rounded-0 img-fluid"  [src]="product.images[0].img">
+                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                  <ul class="list-unstyled">
+                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a>
+                    </li>
+                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-body">
+                <a href="/product/detail/{{product.productId}}" class="h3 text-decoration-none">{{product.productName}}</a>
+                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                  <li>{{product.productSize}}</li>
+                  <li class="pt-2">
+                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                  </li>
+                </ul>
+                <ul class="list-unstyled d-flex justify-content-center mb-1">
+                  <li>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-muted fa fa-star"></i>
+                  </li>
+                </ul>
+                <p class="text-center mb-0 text-danger">{{product.price | currency:'VND':'symbol':'1.0-0' }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -214,196 +180,5 @@
   </div>
 </section>
 <!-- End Featured Product -->
-
-<!-- Start List product  -->
-<section style="background-color: #eee;">
-  <div class="text-center container py-5">
-    <h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
-    <div class="row">
-      <div class="col-lg-4 col-md-12 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-               data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp"
-                 class="w-100"/>
-            <a href="#!">
-              <div class="mask">
-                <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-primary ms-2">New</span></h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Product name</h5>
-            </a>
-            <a href="" class="text-reset">
-              <p>Category</p>
-            </a>
-            <h6 class="mb-3">$61.99</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-               data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                 class="w-100"/>
-            <a href="#!">
-              <div class="mask">
-                <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-success ms-2">Eco</span></h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Product name</h5>
-            </a>
-            <a href="" class="text-reset">
-              <p>Category</p>
-            </a>
-            <h6 class="mb-3">$61.99</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/shoes%20(3).webp"
-                 class="w-100"/>
-            <a href="#!">
-              <div class="mask">
-                <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-danger ms-2">-10%</span></h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Product name</h5>
-            </a>
-            <a href="" class="text-reset">
-              <p>Category</p>
-            </a>
-            <h6 class="mb-3">
-              <s>$61.99</s><strong class="ms-2 text-danger">$50.99</strong>
-            </h6>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 col-md-12 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(23).webp"
-                 class="w-100"/>
-            <a href="#!">
-              <div class="mask">
-                <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5>
-                    <span class="badge bg-success ms-2">Eco</span><span
-                    class="badge bg-danger ms-2">-10%</span>
-                  </h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Product name</h5>
-            </a>
-            <a href="" class="text-reset">
-              <p>Category</p>
-            </a>
-            <h6 class="mb-3">
-              <s>$61.99</s><strong class="ms-2 text-danger">$50.99</strong>
-            </h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-               data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(17).webp"
-                 class="w-100"/>
-            <a href="#!">
-              <div class="mask">
-                <div class="d-flex justify-content-start align-items-end h-100"></div>
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Product name</h5>
-            </a>
-            <a href="" class="text-reset">
-              <p>Category</p>
-            </a>
-            <h6 class="mb-3">$61.99</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(30).webp"
-                 class="w-100"/>
-            <a href="#!">
-              <div class="mask">
-                <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5>
-                    <span class="badge bg-primary ms-2">New</span><span
-                    class="badge bg-success ms-2">Eco</span><span class="badge bg-danger ms-2">-10%</span>
-                  </h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Product name</h5>
-            </a>
-            <a href="" class="text-reset">
-              <p>Category</p>
-            </a>
-            <h6 class="mb-3">
-              <s>$61.99</s><strong class="ms-2 text-danger">$50.99</strong>
-            </h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <!--End List Product-->
 

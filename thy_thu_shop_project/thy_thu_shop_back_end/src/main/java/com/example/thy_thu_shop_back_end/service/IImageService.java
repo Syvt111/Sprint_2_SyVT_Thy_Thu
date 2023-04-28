@@ -9,8 +9,11 @@ public interface IImageService {
     Image findById(int id);
 
     List<Image> findAll();
+    List<Image> findImageByProductId(Long productId);
 
     void save(Image image);
 
     void delete(int id);
+
+
 }

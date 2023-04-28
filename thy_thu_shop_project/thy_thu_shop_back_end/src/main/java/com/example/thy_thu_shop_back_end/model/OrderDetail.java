@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order__detail_id")
+    @Column(name = "order_detail_id")
     private Long orderDetailId;
     @Column(columnDefinition = "int", nullable = false)
     private int quantity;

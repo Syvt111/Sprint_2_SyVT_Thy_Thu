@@ -16,4 +16,8 @@ export class ImageService {
   findAllImage(): Observable<Image[]> {
     return this.http.get<Image[]>(this.URL_API);
   }
+
+  findImageByProductId(productId: number): Observable<Image[]> {
+    return this.http.get<Image[]>(this.URL_API + '/' + productId);
+  }
 }

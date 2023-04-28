@@ -13,7 +13,8 @@ import { ChangePasswordComponent } from './component/security-authentication/cha
 import {LoginComponent} from './component/security-authentication/login/login.component';
 import {ForgotPasswordComponent} from './component/security-authentication/forgot-password/forgot-password.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './component/security-authentication/service-auth/auth.interceptor';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
