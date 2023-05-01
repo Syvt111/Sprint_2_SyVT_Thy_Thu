@@ -1,0 +1,113 @@
+<div class=" container-fluid ">
+  <div class="row container-fluid  d-flex justify-content-center"
+       style="background-color: white; margin-top: 2%;margin-bottom: 2%">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="row-action" style="margin-bottom: 1%">
+            <div class="row">
+              <a routerLink="/progress/add"
+                 style="text-decoration: none">
+                <button type="button" class="btn btn-outline-success  mx-auto"
+                        style="border-radius: 15px;">Thêm mới sản phẩm
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-5">
+              <input id="searchTerm" [(ngModel)]="productNameSearch" class="form-control rounded-pill" type="search"
+                     placeholder="Nhập tên sản phẩm muốn tìm..."
+                     aria-label="Search">
+            </div>
+            <div class="col-md-4">
+              <select class="form-control rounded-pill  d-flex justify-content-center" [(ngModel)]="categoryId" name="category">
+                <option value=0 selected>Loại Sản Phẩm</option>
+                <option *ngFor="let category of categories"
+                        [value]="category.categoryId">{{category.categoryName }}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-outline-success button-search rounded-pill form-control" type="button"
+                      (click)="searchProduct(categoryId,productNameSearch)">Tìm kiếm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+
+<div class="row container-fluid">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="carousel-inner product-links-wap" role="listbox">
+      <div class="carousel-item active">
+        <div class="row">
+          <div *ngIf="flag"><h5 class="text-danger text-center">Danh sách sản phẩm chưa có hoặc đã hết </h5></div>
+          <div class="p-2 pb-3 col-md-2" *ngFor="let product of products">
+            <div class="product-wap card rounded-0">
+              <div class="card rounded-0">
+                <ng-container *ngIf="product.images && product.images.length > 0">
+                  <img class="card-img rounded-0 img-fluid" [src]="product.images[0].img">
+                </ng-container>
+                <div
+                  class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                  <ul class="list-unstyled">
+                    <li><a class="btn btn-success text-white mt-2" href="/product/detail"><i class="far fa-eye"></i></a>
+                    </li>
+                    <li>
+                      <a class="btn btn-success text-white mt-2" href="/product/cart"><i
+                        class="fas fa-cart-plus"></i></a>
+                    </li>
+                    <li>
+                      <a class="btn btn-success text-white mt-2" href="/product/edit"><i
+                        class="fas fa-edit"></i></a>
+                    </li>
+                    <li>
+                      <a class="btn btn-success text-white mt-2" href="/product/delete"><i
+                        class="fas fa-trash-restore"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-body">
+                <a href="/product/detail/{{product.productId}}"
+                   class="h3 text-decoration-none">{{product.productName}}</a>
+                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                  <li>{{product.productSize}}</li>
+                  <li class="pt-2">
+                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                    <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                  </li>
+                </ul>
+                <ul class="list-unstyled d-flex justify-content-center mb-1">
+                  <li>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-warning fa fa-star"></i>
+                    <i class="text-muted fa fa-star"></i>
+                  </li>
+                </ul>
+                <p class="text-center mb-0 text-danger">{{product.price | currency:'VND':'symbol':'1.0-0' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+

@@ -6,12 +6,12 @@ import com.example.thy_thu_shop_back_end.model.Product;
 import com.example.thy_thu_shop_back_end.service.IImageService;
 import com.example.thy_thu_shop_back_end.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +32,20 @@ public class ProductRestController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    @GetMapping("/product")
+    public ResponseEntity<List<Product>> findProgressReportByProjectIdAndStageId(@RequestParam(required = false, defaultValue = "") String productNameSearch,
+                                                                                 @RequestParam(defaultValue = "0") int categoryIdSearch) {
+        List<Product> productList;
+        if (categoryIdSearch == 0) {
+            productList = productService.findAllSearchByNameAndSortList(productNameSearch);
+        } else {
+            productList = productService.findAllSearchAndSortList(categoryIdSearch, productNameSearch);
+        }
+
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
 
 }

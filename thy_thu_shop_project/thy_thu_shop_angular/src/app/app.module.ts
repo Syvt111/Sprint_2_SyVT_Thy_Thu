@@ -12,9 +12,10 @@ import { CartComponent } from './component/cart/cart.component';
 import { ChangePasswordComponent } from './component/security-authentication/change-password/change-password.component';
 import {LoginComponent} from './component/security-authentication/login/login.component';
 import {ForgotPasswordComponent} from './component/security-authentication/forgot-password/forgot-password.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './component/security-authentication/service-auth/auth.interceptor';
+import { ProductListComponent } from './component/product-list/product-list.component';
 
 
 @NgModule({
@@ -28,14 +29,16 @@ import {AuthInterceptor} from './component/security-authentication/service-auth/
     LoginComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
+    ProductListComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

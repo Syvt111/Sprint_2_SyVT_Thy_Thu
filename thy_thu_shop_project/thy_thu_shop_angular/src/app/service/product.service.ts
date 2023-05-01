@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../model/product';
@@ -16,5 +16,10 @@ export class ProductService {
 
   findAllProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL_API);
+  }
+
+  findAllAndSearch(categoryIdSearch: number, productNameSearch: string): Observable<Product[]> {
+    return this.http.get<Product[]>(this.URL_API + '/product' + '?categoryIdSearch=' + categoryIdSearch +
+      '&productNameSearch=' + productNameSearch);
   }
 }

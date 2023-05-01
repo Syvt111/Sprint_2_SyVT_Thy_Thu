@@ -38,7 +38,7 @@
     <div class="col-md-7 text-success">
       <ul class="nav navbar-nav d-flex align-items-center">
         <li class="nav-item text-success">
-          <a class="nav-link" href="index.html"><span class="text-success" style="font-size: x-large"><b>Shops</b></span></a>
+          <a class="nav-link" routerLink="/product/list"><span class="text-success" style="font-size: x-large"><b>Shops</b></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.html">Dày dép</a>
@@ -61,6 +61,21 @@
         <li class="nav-item">
           <a class="nav-link" href="contact.html">Phụ kiện khác</a>
         </li>
+        <div [hidden]="!isLoggedIn" class="nav-item d-flex align-items-center" style="margin-right: 2%">
+          <div class="dropdownUser ">
+            <div class="n-item d-flex align-items-center">
+              <i class="bi bi-person-lines-fill mx-2"></i>
+              <span class="m-2"><b>Quản lý sản phẩm</b></span></div>
+            <div class="dropdown-content p-0">
+              <div class=" getstarted" routerLink="/product/add">
+                <button class="btn">Thêm mới</button>
+              </div>
+              <div class=" getstarted" routerLink="/product/list">
+                <button class="btn">Xem danh sách</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div [hidden]="!isLoggedIn" class="nav-item d-flex align-items-center" style="margin-right: 2%">
           <div class="dropdownUser ">
             <div class="n-item d-flex align-items-center">

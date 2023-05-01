@@ -33,7 +33,11 @@ public class Product {
     @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
 
-    public Product(Long productId, String productCode, String productName, double price, String description, boolean flagDelete, Category category, Set<Image> imageSet, Set<OrderDetail> orderDetailSet) {
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private Set<Cart> cartSet;
+
+    public Product(Long productId, String productCode, String productName, double price, String description, boolean flagDelete, Category category, Set<Image> imageSet, Set<OrderDetail> orderDetailSet, Set<Cart> cartSet) {
         this.productId = productId;
         this.productCode = productCode;
         this.productName = productName;
@@ -43,9 +47,18 @@ public class Product {
         this.category = category;
         this.imageSet = imageSet;
         this.orderDetailSet = orderDetailSet;
+        this.cartSet = cartSet;
     }
 
     public Product() {
+    }
+
+    public Set<Cart> getCartSet() {
+        return cartSet;
+    }
+
+    public void setCartSet(Set<Cart> cartSet) {
+        this.cartSet = cartSet;
     }
 
     public Long getProductId() {

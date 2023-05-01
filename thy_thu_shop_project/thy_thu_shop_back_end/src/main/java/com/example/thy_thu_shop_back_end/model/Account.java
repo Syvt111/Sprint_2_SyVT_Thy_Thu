@@ -14,7 +14,7 @@ public class Account {
     @Column(columnDefinition = "varchar(50)", unique = true, nullable = false)
     private String email;
     @Column(columnDefinition = "text", nullable = false)
-    private String password ;
+    private String password;
     @Column(columnDefinition = "varchar(50)", unique = true, nullable = false)
     private String username;
     @Column(columnDefinition = "bit(1)", nullable = false)
@@ -36,7 +36,11 @@ public class Account {
     @JsonIgnore
     private Set<OrderProduct> orderSet;
 
-    public Account(Long accountId, String email, String password, String username, boolean flagDelete, String name, String avatar, boolean gender, String phoneNumber, String address, Set<AccountRole> accountRoleSet, Set<OrderProduct> orderSet) {
+    @OneToOne(mappedBy = "account")
+    @JsonIgnore
+    private Cart cart;
+
+    public Account(Long accountId, String email, String password, String username, boolean flagDelete, String name, String avatar, boolean gender, String phoneNumber, String address, Set<AccountRole> accountRoleSet, Set<OrderProduct> orderSet, Cart cart) {
         this.accountId = accountId;
         this.email = email;
         this.password = password;
@@ -49,9 +53,18 @@ public class Account {
         this.address = address;
         this.accountRoleSet = accountRoleSet;
         this.orderSet = orderSet;
+        this.cart = cart;
     }
 
     public Account() {
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Long getAccountId() {
