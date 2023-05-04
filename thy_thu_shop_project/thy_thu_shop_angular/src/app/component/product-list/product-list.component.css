@@ -1,0 +1,7 @@
+@media (max-width: 768px) {
+  .fixed-element {
+    position: relative;
+    bottom: auto;
+    width: auto;
+  }
+}

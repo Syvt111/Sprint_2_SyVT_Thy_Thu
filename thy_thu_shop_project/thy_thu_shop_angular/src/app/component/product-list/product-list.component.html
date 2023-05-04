@@ -1,4 +1,4 @@
-<div class=" container-fluid ">
+<div class="fixed-element container-fluid ">
   <div class="row container-fluid  d-flex justify-content-center"
        style="background-color: white; margin-top: 2%;margin-bottom: 2%">
     <div class="col-md-1"></div>
@@ -61,12 +61,10 @@
                 <div
                   class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                   <ul class="list-unstyled">
-                    <li><a class="btn btn-success text-white mt-2" href="/product/detail"><i class="far fa-eye"></i></a>
+                    <li><a class="btn btn-success text-white mt-2" href="/product/detail/{{product.productId}}"><i class="far fa-eye"></i></a>
                     </li>
-                    <li>
-                      <a class="btn btn-success text-white mt-2" href="/product/cart"><i
-                        class="fas fa-cart-plus"></i></a>
-                    </li>
+                    <li><button type="button" class="btn btn-success text-white mt-2" (click)="addProductToCart(product.productId)"><i class="fas fa-cart-plus"></i></button>
+
                     <li>
                       <a class="btn btn-success text-white mt-2" href="/product/edit"><i
                         class="fas fa-edit"></i></a>

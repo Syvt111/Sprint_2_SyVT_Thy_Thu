@@ -40,6 +40,11 @@ public class AccountService implements IAccountService {
     }
 
     @Override
+    public Account findAccountByUsername(String username) {
+        return accountRepository.findAccountByUsername(username);
+    }
+
+    @Override
     public void saveNewPassword(String newPassword, Long id) {
         accountRepository.saveNewPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt(12)), id);
     }

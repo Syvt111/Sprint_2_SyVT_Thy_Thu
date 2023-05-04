@@ -1,0 +1,6 @@
+
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(²ô¸ùÿÿÿÿ
+?
+java:S1659"$Declare "maxSum" on a separate line.(ó’µøøÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Ÿ€ÌŞ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÀÒĞ’

@@ -36,11 +36,12 @@ public class Account {
     @JsonIgnore
     private Set<OrderProduct> orderSet;
 
-    @OneToOne(mappedBy = "account")
-    @JsonIgnore
-    private Cart cart;
 
-    public Account(Long accountId, String email, String password, String username, boolean flagDelete, String name, String avatar, boolean gender, String phoneNumber, String address, Set<AccountRole> accountRoleSet, Set<OrderProduct> orderSet, Cart cart) {
+    @OneToMany(mappedBy = "account")
+    @JsonIgnore
+    private Set<Cart> cartSet;
+
+    public Account(Long accountId, String email, String password, String username, boolean flagDelete, String name, String avatar, boolean gender, String phoneNumber, String address, Set<AccountRole> accountRoleSet, Set<OrderProduct> orderSet, Set<Cart> cartSet) {
         this.accountId = accountId;
         this.email = email;
         this.password = password;
@@ -53,18 +54,11 @@ public class Account {
         this.address = address;
         this.accountRoleSet = accountRoleSet;
         this.orderSet = orderSet;
-        this.cart = cart;
+        this.cartSet = cartSet;
     }
+
 
     public Account() {
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public Long getAccountId() {
@@ -161,5 +155,13 @@ public class Account {
 
     public void setOrderSet(Set<OrderProduct> orderSet) {
         this.orderSet = orderSet;
+    }
+
+    public Set<Cart> getCartSet() {
+        return cartSet;
+    }
+
+    public void setCartSet(Set<Cart> cartSet) {
+        this.cartSet = cartSet;
     }
 }

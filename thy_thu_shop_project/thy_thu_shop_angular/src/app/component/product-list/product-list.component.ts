@@ -4,6 +4,8 @@ import {ProductService} from '../../service/product.service';
 import {ImageService} from '../../service/image.service';
 import {Category} from '../../model/category';
 import {CategoryService} from '../../service/category.service';
+import {CartService} from '../../service/cart.service';
+import {TokenStorageService} from '../security-authentication/service/token-storage.service';
 
 @Component({
   selector: 'app-product-list',
@@ -19,15 +21,19 @@ export class ProductListComponent implements OnInit {
   productNameSearch = '';
   categories ?: Category[] = [];
   flag?: boolean;
+  username: string;
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
-              private imageService: ImageService) {
+              private imageService: ImageService,
+              private cartService: CartService,
+              private  tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
     this.getAllProduct(this.categoryId, this.productNameSearch);
     this.getAllCategory();
+    this.username = this.tokenStorageService.getUser().username;
   }
 
   private getAllProduct(categoryId: number, productName: string) {
@@ -57,5 +63,9 @@ export class ProductListComponent implements OnInit {
     this.categoryService.findAllCategories().subscribe(items => {
       this.categories = items;
     });
+  }
+
+  addProductToCart(productId: number) {
+    this.cartService.addProductToCart(productId, this.username);
   }
 }

@@ -24,7 +24,7 @@ public class ProductRestController {
     private IProductService productService;
 
     @GetMapping()
-    public ResponseEntity<List<Product>> findAllProgressReport() {
+    public ResponseEntity<List<Product>> findAllProduct() {
         List<Product> productList = productService.findAll();
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -32,9 +32,18 @@ public class ProductRestController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> findProductById(@PathVariable Long id) {
+        Product product = productService.findById(id);
+        if (product == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
     @GetMapping("/product")
-    public ResponseEntity<List<Product>> findProgressReportByProjectIdAndStageId(@RequestParam(required = false, defaultValue = "") String productNameSearch,
-                                                                                 @RequestParam(defaultValue = "0") int categoryIdSearch) {
+    public ResponseEntity<List<Product>> findProductAndSearchByNameAndCategory(@RequestParam(required = false, defaultValue = "") String productNameSearch,
+                                                                               @RequestParam(defaultValue = "0") int categoryIdSearch) {
         List<Product> productList;
         if (categoryIdSearch == 0) {
             productList = productService.findAllSearchByNameAndSortList(productNameSearch);

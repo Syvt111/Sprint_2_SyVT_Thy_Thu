@@ -1,7 +1,5 @@
 package com.example.thy_thu_shop_back_end.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,20 +9,20 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
     private int cartId;
-    private int quality;
+    private int quantity;
 
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
-    @JsonIgnore
     private Account account;
 
     @ManyToOne
     @JoinColumn(name = "product_id" , referencedColumnName = "product_id")
     private Product product;
 
-    public Cart(int cartId, int quality, Account account, Product product) {
+    public Cart(int cartId, int quantity, Account account, Product product) {
         this.cartId = cartId;
-        this.quality = quality;
+        this.quantity = quantity;
         this.account = account;
         this.product = product;
     }
@@ -36,28 +34,28 @@ public class Cart {
         return cartId;
     }
 
-    public int getQuality() {
-        return quality;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Account getAccount() {
         return account;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
-    }
-
-    public void setQuality(int quality) {
-        this.quality = quality;
-    }
-
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 
     public void setProduct(Product product) {

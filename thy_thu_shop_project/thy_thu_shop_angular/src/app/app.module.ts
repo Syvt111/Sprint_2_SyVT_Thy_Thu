@@ -10,12 +10,12 @@ import { FooterComponent } from './component/footer/footer.component';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
 import { CartComponent } from './component/cart/cart.component';
 import { ChangePasswordComponent } from './component/security-authentication/change-password/change-password.component';
-import {LoginComponent} from './component/security-authentication/login/login.component';
 import {ForgotPasswordComponent} from './component/security-authentication/forgot-password/forgot-password.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './component/security-authentication/service-auth/auth.interceptor';
 import { ProductListComponent } from './component/product-list/product-list.component';
+import {LoginComponent} from './component/security-authentication/login/login.component';
 
 
 @NgModule({
@@ -26,10 +26,10 @@ import { ProductListComponent } from './component/product-list/product-list.comp
     FooterComponent,
     ProductDetailComponent,
     CartComponent,
-    LoginComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
     ProductListComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,

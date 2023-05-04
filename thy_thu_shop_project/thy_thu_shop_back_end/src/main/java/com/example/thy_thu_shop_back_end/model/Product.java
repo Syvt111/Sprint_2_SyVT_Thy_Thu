@@ -15,8 +15,10 @@ public class Product {
     private String productCode;
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String productName;
-    @Column(columnDefinition = "double", nullable = false)
-    private double price;
+    @Column(columnDefinition = "varchar(50)", nullable = false)
+    private String brand;
+    @Column(columnDefinition = "float", nullable = false)
+    private float price;
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String description;
     @Column(columnDefinition = "bit(1)", nullable = false)
@@ -37,10 +39,11 @@ public class Product {
     @JsonIgnore
     private Set<Cart> cartSet;
 
-    public Product(Long productId, String productCode, String productName, double price, String description, boolean flagDelete, Category category, Set<Image> imageSet, Set<OrderDetail> orderDetailSet, Set<Cart> cartSet) {
+    public Product(Long productId, String productCode, String productName, String brand, float price, String description, boolean flagDelete, Category category, Set<Image> imageSet, Set<OrderDetail> orderDetailSet, Set<Cart> cartSet) {
         this.productId = productId;
         this.productCode = productCode;
         this.productName = productName;
+        this.brand = brand;
         this.price = price;
         this.description = description;
         this.flagDelete = flagDelete;
@@ -51,6 +54,14 @@ public class Product {
     }
 
     public Product() {
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public Set<Cart> getCartSet() {
@@ -85,11 +96,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

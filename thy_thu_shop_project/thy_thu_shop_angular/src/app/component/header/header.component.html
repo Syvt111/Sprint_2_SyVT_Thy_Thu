@@ -38,7 +38,8 @@
     <div class="col-md-7 text-success">
       <ul class="nav navbar-nav d-flex align-items-center">
         <li class="nav-item text-success">
-          <a class="nav-link" routerLink="/product/list"><span class="text-success" style="font-size: x-large"><b>Shops</b></span></a>
+          <a class="nav-link" routerLink="/product/list"><span class="text-success"
+                                                               style="font-size: x-large"><b>Shops</b></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.html">Dày dép</a>
@@ -61,8 +62,8 @@
         <li class="nav-item">
           <a class="nav-link" href="contact.html">Phụ kiện khác</a>
         </li>
-        <div [hidden]="!isLoggedIn" class="nav-item d-flex align-items-center" style="margin-right: 2%">
-          <div class="dropdownUser ">
+        <div [hidden]="!isLoggedIn" class="nav-item d-flex align-items-center">
+          <div class="dropdownUser">
             <div class="n-item d-flex align-items-center">
               <i class="bi bi-person-lines-fill mx-2"></i>
               <span class="m-2"><b>Quản lý sản phẩm</b></span></div>
@@ -77,10 +78,10 @@
           </div>
         </div>
         <div [hidden]="!isLoggedIn" class="nav-item d-flex align-items-center" style="margin-right: 2%">
-          <div class="dropdownUser ">
+          <div class="dropdownUser">
             <div class="n-item d-flex align-items-center">
               <i class="bi bi-person-lines-fill mx-2"></i>
-              <span class="m-2"><b>Khách hàng</b></span></div>
+              <span class="m-2"><b>Quản lý Khách hàng</b></span></div>
             <div class="dropdown-content p-0">
               <div class=" getstarted" routerLink="/account/add">
                 <button class="btn">Thêm mới</button>
@@ -112,7 +113,8 @@
         <a class="nav-icon position-relative text-decoration-none d-flex align-items-center" routerLink="/product/cart">
           <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1 text-success" style="font-size: x-large"></i>
           <span
-            class=" translate-middle badge rounded-pill bg-light text-danger" style="font-size: large">7</span>
+            class=" translate-middle badge rounded-pill bg-light text-danger"
+            style="font-size: medium">{{totalQuantity$ | async}}</span>
         </a>
       </div>
       <div [hidden]="!isLoggedIn" class="d-flex align-items-center col-7">

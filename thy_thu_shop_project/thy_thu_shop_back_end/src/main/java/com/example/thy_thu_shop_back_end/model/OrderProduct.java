@@ -15,8 +15,8 @@ public class OrderProduct {
     private String codeOrder;
     @Column(columnDefinition = "dateTime", nullable = false)
     private String timeOrder;
-    @Column(columnDefinition = "double", nullable = false)
-    private double totalPrice;
+    @Column(columnDefinition = "float", nullable = false)
+    private float totalPrice;
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
     private Account account;
@@ -24,7 +24,7 @@ public class OrderProduct {
     @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
 
-    public OrderProduct(Long orderId, String codeOrder, String timeOrder, double totalPrice, Account account, Set<OrderDetail> orderDetailSet) {
+    public OrderProduct(Long orderId, String codeOrder, String timeOrder, float totalPrice, Account account, Set<OrderDetail> orderDetailSet) {
         this.orderId = orderId;
         this.codeOrder = codeOrder;
         this.timeOrder = timeOrder;
@@ -60,11 +60,11 @@ public class OrderProduct {
         this.timeOrder = timeOrder;
     }
 
-    public double getTotalPrice() {
+    public float getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
     }
 

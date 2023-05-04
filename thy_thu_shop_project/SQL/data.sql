@@ -1,20 +1,41 @@
 use thy_thu_project;
-INSERT INTO `thy_thu_project`.`account_role` (`account_id`,`role_id`) VALUES 
-('1','1'),
- ('2','2'), 
- ('3','2');
 
 INSERT INTO `thy_thu_project`.`role` (`role_name`) VALUES
  ('ROLE_USER '),
  ('ROLE_ADMIN');
+ 
+ INSERT INTO `thy_thu_project`.`account` (email, `password`, username, flag_delete, avatar, `name`, gender, phone_number, address) VALUES 
+('tiensyvan@gmail.com', '$2a$12$Cnq3Wfw6Z.tyk4wUeonh1ukHrXMv/ARksOxF8Lo7DqUxeH44IpIP.', 'tiensyvan@gmail.com', 0, 'https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/329957660_518849393693507_1360756579603794620_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zsic4OzXswsAX_jR-au&_nc_oc=AQmwqqDJvom5QmRPIKuyX-y3Ftq9WuNj_6L_L6_kMeOv1Q-IZ5kfY8qkjqGWPmjpL0Y&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfDsjQ_ZMkm1UlOY_Tmj_cwRAXGZQS4Wo6rQpxxICExDyg&oe=6444B7C0', 'Tiến Sỹ', 1, '123456789', 'Đà Nẵng'), 
+('tranthithanhthu26296@gmail.com', '$2a$12$Cnq3Wfw6Z.tyk4wUeonh1ukHrXMv/ARksOxF8Lo7DqUxeH44IpIP.', 'tranthithanhthu26296@gmail.com', 0, 'https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-6/337683244_251163847249612_2438987209407196604_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=djnRIkx5Cc0AX9e9Dxh&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfD2Fvz5AkDyBL7YiTYj6x2xR_J_U6IVg1880y8D9waO3g&oe=6444FFB7', 'Thanh Thu', 0, '987654321', 'Đà Nẵng'),
+('trantuan1010@gmail.com', '$2a$12$Cnq3Wfw6Z.tyk4wUeonh1ukHrXMv/ARksOxF8Lo7DqUxeH44IpIP.', 'trantuan1010@gmail.com', 0, 'https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/329152017_569926781705130_6197549642398066089_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=7dPXfYZQcCoAX_66PT1&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfDBpjiBoLB6XDF83qI9al8RThA1fJJHSRTHu8X47bgTfw&oe=6444E333', 'Trần Tuấn', 1, '987654210', 'Đà Nẵng')
+;
 
+INSERT INTO `thy_thu_project`.`account_role` (`account_id`,`role_id`) VALUES 
+('1','1'),
+ ('2','2'), 
+ ('3','2');
+ 
+ INSERT INTO `thy_thu_project`.`category` (`category_name`) VALUES 
+('Ví'), 
+('Zippo'), 
+('Giày Nam'), 
+('Giày Nữ'), 
+('Kính Nam'), 
+('Kính Nữ'), 
+('Tú Xách'), 
+('Bao Lô'), 
+('Ví Cầm Tay'), 
+('Thắt Lưng')
+;
 
-INSERT INTO `thy_thu_project`.`order_detail` (`quantity`, `order_id`, `product_id`) VALUES 
-(2, 1, 3),
- (1, 2, 3),
- (3, 3, 2),
- (2, 1, 2), 
- (4, 4, 1);
+INSERT INTO `thy_thu_project`.`product` (`product_code`, `product_name`, `price`, `description`, `flag_delete`, `category_id`,`brand`) VALUES 
+('P001', 'Túi xách laptop', '1000000', 'PRADA, đứng 25cm, ngang 21cm', 0, 7,'Italy'), 
+('P002', 'Giày lười', '480000', 'Màu xanh rêu, dà bò, size 40', 0, 3,'Italy'), 
+('P003', 'Kinh nữ', '300000', 'Chanel, mắt trà nữ', 0, 6,'Italy'),
+('P004', 'Thắt lưng', '350000', 'Quần âu, da thật 100%', 0, 10,'Italy'),
+('P005', 'Ví cầm tay', '350000', 'Quần âu, da thật 100%', 0, 9,'Italy'),
+('P006', 'Ba lô', '350000','Vip, ngang 22cm, đứng 12cm', 0, 8,'Italy')
+;
 
 INSERT INTO `thy_thu_project`.`image` (`img`,`product_id`) VALUES
  ('https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/343422970_103874696026507_8052583952701839957_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=ZHriHakCHvAAX89PwG3&_nc_ht=scontent.fdad3-1.fna&oh=00_AfA6rrRm9bFMqw5BDqxIanMqg-fuqGa8xNMf0gP3lm22YA&oe=64516C3B',1),
@@ -34,38 +55,23 @@ INSERT INTO `thy_thu_project`.`image` (`img`,`product_id`) VALUES
  ('https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/341368431_1420261805378173_1400791020302257473_n.jpg?stp=dst-jpg_p600x600&_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=pxj0oIf2P8AAX9685IL&_nc_ht=scontent.fdad3-1.fna&oh=00_AfCh7FKjnkFAJwR6lBexnd0Bh_xOcBV-1XwJX59mj2AvYw&oe=645261EB',6)
 ;
 
-INSERT INTO `thy_thu_project`.`product` (`product_code`, `product_name`, `price`, `description`, `flag_delete`, `category_id`) VALUES 
-('P001', 'Túi xách laptop', '1000000', 'PRADA, đứng 25cm, ngang 21cm', 0, 7), 
-('P002', 'Giày lười', '480000', 'Màu xanh rêu, dà bò, size 40', 0, 3), 
-('P003', 'Kinh nữ', '300000', 'Chanel, mắt trà nữ', 0, 6),
-('P004', 'Thắt lưng', '350000', 'Quần âu, da thật 100%', 0, 10),
-('P005', 'Ví cầm tay', '350000', 'Quần âu, da thật 100%', 0, 9),
-('P006', 'Ba lô', '350000','Vip, ngang 22cm, đứng 12cm', 0, 8)
-;
-
-INSERT INTO `thy_thu_project`.`category` (`category_name`) VALUES 
-('Ví'), 
-('Zippo'), 
-('Giày Nam'), 
-('Giày Nữ'), 
-('Kính Nam'), 
-('Kính Nữ'), 
-('Tú Xách'), 
-('Bao Lô'), 
-('Ví Cầm Tay'), 
-('Thắt Lưng')
-;
-
-
-INSERT INTO `thy_thu_project`.`account` (email, `password`, username, flag_delete, avatar, `name`, gender, phone_number, address) VALUES 
-('tiensyvan@gmail.com', '$12$fKU8tawsAZKS1IGyZTtyiuuwdcFRHO07lDaPfTBKZ/Gk0NgaOeGrm', 'syvt', 0, 'https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/329957660_518849393693507_1360756579603794620_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zsic4OzXswsAX_jR-au&_nc_oc=AQmwqqDJvom5QmRPIKuyX-y3Ftq9WuNj_6L_L6_kMeOv1Q-IZ5kfY8qkjqGWPmjpL0Y&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfDsjQ_ZMkm1UlOY_Tmj_cwRAXGZQS4Wo6rQpxxICExDyg&oe=6444B7C0', 'Tiến Sỹ', 1, '123456789', 'Đà Nẵng'), 
-('tranthithanhthu26296@gmail.com', '$12$fKU8tawsAZKS1IGyZTtyiuuwdcFRHO07lDaPfTBKZ/Gk0NgaOeGrm', 'thanhthu', 0, 'https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-6/337683244_251163847249612_2438987209407196604_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=djnRIkx5Cc0AX9e9Dxh&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfD2Fvz5AkDyBL7YiTYj6x2xR_J_U6IVg1880y8D9waO3g&oe=6444FFB7', 'Thanh Thu', 0, '987654321', 'Đà Nẵng'),
-('trantuan1010@gmail.com', '$12$fKU8tawsAZKS1IGyZTtyiuuwdcFRHO07lDaPfTBKZ/Gk0NgaOeGrm', 'trantuan', 0, 'https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/329152017_569926781705130_6197549642398066089_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=7dPXfYZQcCoAX_66PT1&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfDBpjiBoLB6XDF83qI9al8RThA1fJJHSRTHu8X47bgTfw&oe=6444E333', 'Trần Tuấn', 1, '987654210', 'Đà Nẵng')
-;
-
 INSERT INTO `thy_thu_project`.`order_product` (`code_order`, `time_order`, `total_price`, `account_id`) VALUES
  ('ORD001', '2023-04-19 10:30:00', 500000, 1),
  ('ORD002', '2023-04-19 12:00:00', 1000000, 2),
  ('ORD003', '2023-04-19 14:30:00', 1000000,3), 
  ('ORD004', '2023-04-19 16:00:00', 1200000, 3),
- ('ORD005', '2023-04-19 18:30:00', 480000, 2)
+ ('ORD005', '2023-04-19 18:30:00', 480000, 2);
+ 
+ INSERT INTO `thy_thu_project`.`order_detail` (`quantity`, `order_id`, `product_id`) VALUES 
+(2, 1, 3),
+ (1, 2, 3),
+ (3, 3, 2),
+ (2, 1, 2), 
+ (4, 4, 1); 
+ 
+ INSERT INTO `thy_thu_project`.`cart` (`quantity`, `account_id`, `product_id`) VALUES 
+(2, 1, 3),
+(1, 2, 1),
+(3, 3, 2),
+(2, 1, 4), 
+(4, 2, 2);
