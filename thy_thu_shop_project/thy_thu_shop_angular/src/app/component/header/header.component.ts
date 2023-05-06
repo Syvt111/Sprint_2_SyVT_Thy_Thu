@@ -31,8 +31,9 @@ export class HeaderComponent implements OnInit {
       this.currentUser = this.tokenStorageService.getUser().username;
       this.role = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
-      this.cartService.updateTotalQuantity(this.username);
+      this.cartService.updateCartsQuantity(this.username);
       this.totalQuantity$ = this.cartService.getTotalQuantity$();
+      console.log(this.totalQuantity$);
     }
     this.isLoggedIn = this.username != null;
     this.getUsernameAccount();

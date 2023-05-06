@@ -1,9 +1,8 @@
 package com.example.thy_thu_shop_back_end.service;
 
-import com.example.thy_thu_shop_back_end.model.Account;
 import com.example.thy_thu_shop_back_end.model.Cart;
-import com.example.thy_thu_shop_back_end.model.Product;
-import org.springframework.data.repository.query.Param;
+
+
 
 import java.util.List;
 

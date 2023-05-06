@@ -2,7 +2,7 @@
 <section class="bg-light">
   <div class="container pb-5">
     <div class="row">
-      <div class="col-lg-5 mt-5">
+      <div class="col-lg-6 mt-5">
         <div class="card mb-3">
 
           <img class="card-img img-fluid" [src]="imgStart" alt="Card image cap"
@@ -52,7 +52,7 @@
         </div>
       </div>
       <!-- col end -->
-      <div class="col-lg-7 mt-5">
+      <div class="col-lg-6 mt-5">
         <div class="card">
           <ng-container *ngIf="productDetail">
             <div class="card-body">
@@ -70,7 +70,7 @@
               </p>
               <ul class="list-inline">
                 <li class="list-inline-item">
-                  <h6>Brand:</h6>
+                  <h6>Xuất xứ :</h6>
                 </li>
                 <li class="list-inline-item">
                   <p class="text-muted"><strong>{{productDetail.brand}}</strong></p>
@@ -79,61 +79,66 @@
 
               <h6>Mô tả:</h6>
               <p>{{productDetail.description}}</p>
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <h6>Màu hiện có :</h6>
-                </li>
-                <li class="list-inline-item">
-                  <p class="text-muted"><strong>Đen / Xanh</strong></p>
-                </li>
+              <h6>Mã sản phẩm :</h6>
+              <ul class="list-unstyled pb-3">
+                <li>{{productDetail.productCode}}</li>
               </ul>
-              <div class="row">
-                <div class="col-md-4">
-                  <h6>Mã sản phẩm :</h6>
-                  <ul class="list-unstyled pb-3">
-                    <li>{{productDetail.productCode}}</li>
-                  </ul>
-                </div>
-                <div class="col-md-8 ">
-                  <div>
-                    <input type="hidden" name="product-title" value="Activewear">
-                    <div class="row m-3"></div>
-                    <div class="row" style="display: flex; justify-content: center">
-                      <div class="col-auto">
-                        <ul class="list-inline pb-3">
-                          <li class="list-inline-item text-right">
-                            Số lượng
-                            <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                          </li>
-                          <li class="list-inline-item"><span class="btn btn-success" id="btn-minus"
-                                                             (click)="subProductDetailFormCart(productDetail.productId)">-</span>
-                          </li>
+              <hr class="bg-success">
+              <div>
+                <input type="hidden" name="product-title" value="Activewear">
+                <div class="row m-3"></div>
+                <div class="row" style="display: flex; justify-content: center">
+                  <div class=" row" style="margin: 5%">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-4">
+                      <h5>Số lượng</h5>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center">
+                      <div class="row ">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success" id="btn-minus"
+                                                           (click)="subProductDetailFormCart(productDetail.productId)"><i
+                          class="fas fa-minus"></i></span>
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-center">
                           <ng-container *ngIf="quantityDetail">
-                          <li class="list-inline-item"><span class="badge bg-secondary" id="var-value"
-                          >{{quantityDetail| async}}</span></li>
+                            <input class="form-control text-dark" #quantityUpdate (change)="addToCartByQuantity(productDetail.productId,quantityUpdate.value)"  value="{{quantityDetail| async}}">
                           </ng-container>
-                          <li class="list-inline-item"><span class="btn btn-success" id="btn-plus"
-                                                             (click)="addProductDetailToCart(productDetail.productId)">+</span>
-                          </li>
-                        </ul>
-                        <div class="col-auto text-danger"> Tổng tiền :
-                          <b>{{quantityDetailPrice * productDetail.price  | currency:'VND':'symbol':'1.0-0' }}</b></div>
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success" id="btn-plus"
+                                                           (click)="addProductDetailToCart(productDetail.productId)"><i
+                          class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="col-md-1"></div>
+
                       </div>
                     </div>
-                    <div class="row m-3"></div>
-                    <div class="row pb-3">
-                      <div class="col d-grid">
-                        <button type="submit" class="btn btn-success btn-lg" name="submit" routerLink="/product/cart"
-                                value="buy">Mua
-                        </button>
-                      </div>
-                      <div class="col d-grid">
-                        <button type="button" class="btn btn-success btn-lg" name="submit"
-                                (click)="addProductToCart(productDetail.productId)">Thêm vào giỏ
-                          hàng
-                        </button>
-                      </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <h5>Tổng tiền </h5>
                     </div>
+                    <div class="col-md-6 d-flex justify-content-center">
+                      <h4 class="col-auto text-danger">
+                        <b>{{(quantityDetail | async) * productDetail.price  | currency:'VND':'symbol':'1.0-0' }}</b>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <hr class="bg-success">
+
+                <div class="row pb-3">
+                  <div class="col d-grid">
+                    <button type="submit" class="btn btn-outline-success btn-lg" name="submit" routerLink="/product/cart"
+                            value="buy">Mua hàng ngay
+                    </button>
+                  </div>
+                  <div class="col d-grid">
+                    <button type="button" class="btn btn-outline-success btn-lg" name="submit"
+                            routerLink="/product/list">Quay lại shop
+                    </button>
                   </div>
                 </div>
               </div>

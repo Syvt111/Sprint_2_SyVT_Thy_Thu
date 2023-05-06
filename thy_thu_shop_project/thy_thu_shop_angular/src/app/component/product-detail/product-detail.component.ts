@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
   cartListLength: number;
   carts?: Cart[];
   quantityDetail: Observable<number>;
-  quantityDetailPrice = 0 ;
+  quantityDetailPrice = 0;
 
 
   constructor(private productService: ProductService,
@@ -112,4 +112,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
 
+  addToCartByQuantity(productId: number, quantityUpdate: string) {
+    this.cartService.addProductTooQuantityToCart(productId, this.username, +quantityUpdate);
+  }
 }

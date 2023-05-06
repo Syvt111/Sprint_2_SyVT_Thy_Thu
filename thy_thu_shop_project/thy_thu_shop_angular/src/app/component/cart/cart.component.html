@@ -1,68 +1,94 @@
-<section class="h-100 h-custom" style="background-color: #eee;">
-  <div class="container py-5 h-100">
+<section class=" " style="background-color: #eee;">
+  <div class="container py-5 ">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
         <div class="card">
           <div class="card-body p-4">
 
             <div class="row">
-
-              <div class="col-lg-7">
+              <!--Giỏ hàng -->
+              <div class="col-lg-8">
                 <h5 class="mb-3">
-                  <a routerLink="/product/list" class="text-body btn"><i
-                    class="fas fa-long-arrow-alt-left me-2 "></i>Quay lại cửa hàng</a></h5>
+                  <a routerLink="/product/list" class="text-body text-success btn"><i
+                    class="fas fa-long-arrow-alt-left me-2 "></i><b>Quay lại shop</b></a></h5>
                 <hr>
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                   <div>
-                    <p class="mb-0"><span>Bạn có &nbsp;</span><span><b>{{cartListLength}}</b></span><span>&nbsp; sản phẩm</span>
+                    <p class="mb-0"><span>Bạn có &nbsp;</span><span><b>{{cartListLength | async}}</b></span><span>&nbsp; sản phẩm</span>
                     </p>
                   </div>
                 </div>
 
-                <div class="card mb-3" *ngFor="let cart of carts">
+                <div class="card mb-3" *ngFor="let cart of carts | async">
+
                   <div class="card-body">
                     <div class=" row d-flex justify-content-between">
-                      <div class="col-md-6 d-flex flex-row align-items-center name-img">
+                      <div class="col-md-5 d-flex flex-row align-items-center name-img">
                         <div>
                           <ng-container *ngIf="cart.product.images">
-                          <img
-                            [src]="cart.product.images[0].img"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                            <a routerLink="/product/detail/{{cart.product.productId}}">
+                              <img
+                                [src]="cart.product.images[0].img"
+                                class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                            </a>
                           </ng-container>
                         </div>
                         <div class="ms-3">
-                          <h5>{{cart.product.productName}}</h5>
+                          <h5 class="small mb-0">{{cart.product.productName}}</h5>
                           <p class="small mb-0">{{cart.product.description}}</p>
+                          <p class="small mb-0">{{cart.product.price | currency:'VND':'symbol':'1.0-0'}}</p>
                         </div>
                       </div>
-                      <div class="col-md-6 d-flex flex-row align-items-center quantity-price">
-                        <div class="col-md-4" >
-                          <h5 class="fw-normal mb-0">{{cart.quantity}}</h5>
+                      <div class="col-md-7 d-flex flex-row align-items-center quantity-price">
+                        <div class="row">
+                        <div class="col-md-6">
+                          <div class="row ">
+                            <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success"
+                                                                                      id="btn-minus"
+                                                                                      (click)="subProductFormCart(cart)"><i
+                              class="fas fa-minus"></i></span>
+                            </div>
+                            <div class="col-md-4 d-flex justify-content-center">
+                              <input class="form-control text-dark" #quantityUpdate
+                                     (change)="addToCartByQuantity(cart.product.productId,quantityUpdate.value)"
+                                     value="{{cart.quantity}}">
+                            </div>
+                            <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success"
+                                                                                      id="btn-plus"
+                                                                                      (click)="addProductToCart(cart)"><i
+                              class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="col-md-2"></div>
+                          </div>
                         </div>
-                        <div class="col-md-6" >
-                          <h5 class="mb-0">{{cart.product.price | currency:'VND':'symbol':'1.0-0' }}</h5>
+                        <div class="col-md-4 d-flex justify-content-center">
+                          <h5
+                            class="mb-0 d-flex justify-content-center" style="margin-top: 10%">{{cart.product.price * cart.quantity | currency:'VND':'symbol':'1.0-0' }}</h5>
                         </div>
                         <div class="delete-icon col-md-2">
-                          <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                          <span class="btn text-danger" style="font-size: x-large"
+                                (click)="deleteProductFromCart(cart)"><i class="fas fa-trash-alt"></i></span>
                         </div>
 
+                      </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div>
-              <div class="col-lg-5">
+
+              <!--Thanh toán -->
+              <div class="col-lg-4">
                 <div class="card bg-success text-white rounded-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0">Card details</h5>
+                      <h5 class="mb-0">Thanh Toán</h5>
                       <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                            class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
                     </div>
 
-                    <p class="small mb-2">Card type</p>
+                    <p class="small mb-2">Hình thức thanh toán</p>
                     <a href="#!" type="submit" class="text-white"><i
                       class="fab fa-cc-mastercard fa-2x me-2"></i></a>
                     <a href="#!" type="submit" class="text-white"><i
@@ -72,14 +98,14 @@
                     <div class="mt-4">
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                               placeholder="Cardholder's Name"/>
-                        <label class="form-label" for="typeName">Cardholder's Name</label>
+                               placeholder="Nhập tên chủ thẻ"/>
+                        <label class="form-label" for="typeName">Tên chủ thẻ</label>
                       </div>
 
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeTextCart" class="form-control form-control-lg" siez="17"
                                placeholder="1234 5678 9012 3457" minlength="19" maxlength="19"/>
-                        <label class="form-label" for="typeTextCart">Card Number</label>
+                        <label class="form-label" for="typeTextCart">Số thẻ</label>
                       </div>
 
                       <div class="row mb-4">
@@ -87,7 +113,7 @@
                           <div class="form-outline form-white">
                             <input type="text" id="typeExp" class="form-control form-control-lg"
                                    placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7"/>
-                            <label class="form-label" for="typeExp">Expiration</label>
+                            <label class="form-label" for="typeExp">Ngày hết hạn</label>
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -105,23 +131,24 @@
 
                     <div class="d-flex justify-content-between">
                       <p class="mb-2">Tổng tiền sản phẩm</p>
-                      <p class="mb-2">$4798.00</p>
+                      <p class="mb-2">{{totalPrice | async | currency:'VND':'symbol':'1.0-0'}}</p>
                     </div>
 
                     <div class="d-flex justify-content-between">
                       <p class="mb-2">Phí ship</p>
-                      <p class="mb-2">$20.00</p>
+                      <p class="mb-0">{{ship | currency:'VND':'symbol':'1.0-0' }}</p>
                     </div>
-
+                    <hr class="my-4">
                     <div class="d-flex justify-content-between mb-4">
-                      <p class="mb-2">Tổng tiền</p>
-                      <p class="mb-2">$4818.00</p>
+                      <h5 class="mb-2 text-danger"><i>Tổng tiền</i></h5>
+                      <h5 class="mb-2 text-danger"><i>{{totalPriceAndShip  | currency:'VND':'symbol':'1.0-0'}}</i></h5>
                     </div>
 
-                    <button type="button" class="btn btn-info btn-block btn-lg">
+                    <button type="button" class="btn btn-outline-success bg-light btn-block btn-lg">
                       <div class="d-flex justify-content-between">
-                        <span>$4818.00 &nbsp;</span>
-                        <span>Thanh toán <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <span>{{totalPriceAndShip  | currency:'VND':'symbol':'1.0-0'}}&nbsp;<i
+                          class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <span>&nbsp;&nbsp;Thanh toán</span>
                       </div>
                     </button>
 
@@ -131,7 +158,90 @@
               </div>
 
             </div>
+            <!-- Địa chỉ gửi hàng-->
+            <div class="row" style="margin-top: 1%">
+              <div class="card text-success rounded-3">
+                <div class="card-body">
+                  <div class="row mt-3 mx-3" style="margin-top:25px ;">
+                    <div class="col-md-3">
+                      <div style="margin-top: 50px; margin-left: 10px;" class="text-center">
+                        <i id="animationDemo" data-mdb-animation="slide-right" data-mdb-toggle="animation"
+                           data-mdb-animation-reset="true" data-mdb-animation-start="onScroll"
+                           data-mdb-animation-on-scroll="repeat" class="fas fa-3x fa-shipping-fast text-success"></i>
+                        <h3 class="mt-3 text-success">Welcome</h3>
+                        <p class="text-success">Phí giao hàng sẽ phụ thuộc vào khoảng cách giữa đại lý cửa hàng và địa
+                          điểm giao hàng ! Với đơn hàng trên 10.000.000 sẽ được miễn phí ship .</p>
+                      </div>
+                      <div></div>
+                      <br>
+                      <div class="text-left">
+                        <h5 class="">
+                          <a routerLink="/product/list" class="text-body text-success btn"><i
+                            class="fas fa-long-arrow-alt-left me-2 "></i><b>Quay lại shop</b></a></h5>
+                      </div>
+                    </div>
+                    <div class="col-md-9 justify-content-center">
+                      <div class="card card-custom pb-4">
+                        <div class="card-body mt-0 mx-5">
+                          <div class="text-center mb-3 pb-2 mt-3">
+                            <h4 class="text-success">Địa chỉ giao hàng</h4>
+                          </div>
 
+                          <form class="mb-0">
+
+                            <div class="row mb-4">
+                              <div class="col">
+                                <div class="form-outline">
+                                  <input type="text" id="form9Example1" class="form-control input-custom"
+                                         placeholder="Nhập họ và tên"/>
+                                  <label class="form-label" for="form9Example1">Họ tên người nhận hàng ( <span
+                                    style="color: red">*</span><span>)</span></label>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="form-outline">
+                                  <input type="email" id="typeEmail" class="form-control input-custom"
+                                         placeholder="Nhập số điện thoại"/>
+                                  <label class="form-label" for="typeEmail">Số điện thoại ( <span
+                                    style="color: red">*</span><span>)</span></label>
+                                </div>
+                              </div>
+
+                            </div>
+
+                            <div class="row mb-4">
+                              <div class="col">
+                                <div class="form-outline">
+                                  <input type="text" id="form9Example6" class="form-control input-custom"
+                                         placeholder="Nhập địa chỉ"/>
+                                  <label class="form-label" for="form9Example6">Địa chỉ giao hàng ( <span
+                                    style="color: red">*</span><span>)</span></label>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="form-outline">
+                                  <input type="text" id="form9Example2" class="form-control input-custom"
+                                         placeholder="Nhập ghi chú"/>
+                                  <label class="form-label" for="form9Example2">Ghi chú (Nếu có)</label>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="float-end ">
+                              <!-- Submit button -->
+                              <button type="submit" class="btn btn-outline-success"
+                              >Lưu lại thông tin
+                              </button>
+                            </div>
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

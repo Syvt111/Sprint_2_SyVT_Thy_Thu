@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-4">
               <select class="form-control rounded-pill  d-flex justify-content-center" [(ngModel)]="categoryId" name="category">
-                <option value=0 selected>Loại Sản Phẩm</option>
+                <option value=0 selected >Các Loại Sản Phẩm</option>
                 <option *ngFor="let category of categories"
                         [value]="category.categoryId">{{category.categoryName }}</option>
               </select>
@@ -61,23 +61,23 @@
                 <div
                   class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                   <ul class="list-unstyled">
-                    <li><a class="btn btn-success text-white mt-2" href="/product/detail/{{product.productId}}"><i class="far fa-eye"></i></a>
+                    <li><a class="btn btn-success text-white mt-2" routerLink="/product/detail/{{product.productId}}"><i class="far fa-eye"></i></a>
                     </li>
                     <li><button type="button" class="btn btn-success text-white mt-2" (click)="addProductToCart(product.productId)"><i class="fas fa-cart-plus"></i></button>
 
                     <li>
-                      <a class="btn btn-success text-white mt-2" href="/product/edit"><i
+                      <a class="btn btn-success text-white mt-2" routerLink="/product/edit"><i
                         class="fas fa-edit"></i></a>
                     </li>
                     <li>
-                      <a class="btn btn-success text-white mt-2" href="/product/delete"><i
+                      <a class="btn btn-success text-white mt-2" routerLink="/product/delete"><i
                         class="fas fa-trash-restore"></i></a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div class="card-body">
-                <a href="/product/detail/{{product.productId}}"
+                <a routerLink="/product/detail/{{product.productId}}"
                    class="h3 text-decoration-none">{{product.productName}}</a>
                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                   <li>{{product.productSize}}</li>
