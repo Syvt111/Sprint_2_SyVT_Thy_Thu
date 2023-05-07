@@ -5,8 +5,6 @@ import {Cart} from '../../model/cart';
 import {ImageService} from '../../service/image.service';
 import {Observable} from 'rxjs';
 import {ShareService} from '../security-authentication/service/share.service';
-import {map} from 'rxjs/operators';
-import {getExpressionLoweringTransformFactory} from '@angular/compiler-cli/src/transformers/lower_expressions';
 
 @Component({
   selector: 'app-cart',

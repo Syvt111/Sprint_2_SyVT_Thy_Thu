@@ -5,6 +5,7 @@ import {ProductDetailComponent} from './component/product-detail/product-detail.
 import {CartComponent} from './component/cart/cart.component';
 import {LoginComponent} from './component/security-authentication/login/login.component';
 import {ProductListComponent} from './component/product-list/product-list.component';
+import {PayPalComponent} from './component/pay-pal/pay-pal.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'product/list', component: ProductListComponent},
   {path: 'product/cart', component: CartComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'paypal', component: PayPalComponent},
 ];
 
 @NgModule({

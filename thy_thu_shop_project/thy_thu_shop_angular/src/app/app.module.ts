@@ -16,6 +16,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './component/security-authentication/service-auth/auth.interceptor';
 import { ProductListComponent } from './component/product-list/product-list.component';
 import {LoginComponent} from './component/security-authentication/login/login.component';
+import { PayPalComponent } from './component/pay-pal/pay-pal.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {LoginComponent} from './component/security-authentication/login/login.co
     ChangePasswordComponent,
     ForgotPasswordComponent,
     ProductListComponent,
-    LoginComponent
+    LoginComponent,
+    PayPalComponent,
   ],
     imports: [
         BrowserModule,
