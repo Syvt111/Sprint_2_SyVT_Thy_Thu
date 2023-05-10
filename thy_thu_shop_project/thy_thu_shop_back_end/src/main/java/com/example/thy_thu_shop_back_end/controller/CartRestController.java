@@ -2,6 +2,8 @@ package com.example.thy_thu_shop_back_end.controller;
 
 import com.example.thy_thu_shop_back_end.model.Cart;
 import com.example.thy_thu_shop_back_end.model.Product;
+import com.example.thy_thu_shop_back_end.security_authentication.jwt.JwtFilter;
+import com.example.thy_thu_shop_back_end.security_authentication.jwt.JwtUtility;
 import com.example.thy_thu_shop_back_end.service.ICartService;
 import com.example.thy_thu_shop_back_end.service.IProductService;
 import org.springframework.beans.BeanUtils;
@@ -13,6 +15,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +29,8 @@ public class CartRestController {
 
     @Autowired
     private ICartService cartService;
+    @Autowired
+    private JwtUtility jwtUtility;
 
     @GetMapping("/username")
     public ResponseEntity<List<Cart>> findAllCartByUsername(@RequestParam String username) {
@@ -139,4 +144,11 @@ public class CartRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @DeleteMapping("/username")
+    public ResponseEntity<?> deleteTeacherById(HttpServletRequest httpServletRequest) {
+        String token = JwtFilter.parseJwt(httpServletRequest);
+        String username = jwtUtility.getUserNameFromJwtToken(token);
+        cartService.deleteByUsername(username);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

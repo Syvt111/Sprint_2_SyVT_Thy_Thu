@@ -109,7 +109,7 @@
       </ul>
     </div>
     <div class="col-md-2 row">
-      <div class="col-3 d-flex align-items-center" style="padding: 0">
+      <div *ngIf="isLoggedIn"  class="col-3 d-flex align-items-center" style="padding: 0">
         <a class="nav-icon position-relative text-decoration-none d-flex align-items-center" routerLink="/product/cart">
           <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1 text-success" style="font-size: x-large"></i>
           <span
@@ -117,26 +117,38 @@
             style="font-size: medium">{{totalQuantity$ | async}}</span>
         </a>
       </div>
-      <div [hidden]="!isLoggedIn" class="d-flex align-items-center col-7">
+      <div *ngIf="!isLoggedIn" class="d-flex align-items-center col-7">
+        <button class="btn"  (click)="logIn()"><h5>Đăng nhập</h5></button>
+      </div>
+      <div [hidden]="!isLoggedIn && accounts" class="d-flex align-items-center col-7">
         <div class="dropdownUser">
           <div class="n-item d-flex align-items-center">
             <i class="bi bi-person-lines-fill mx-2"></i>
-            <img
-              src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/329957660_518849393693507_1360756579603794620_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cR6Ayxd2uOsAX_x2oXQ&_nc_oc=AQmjY3VojpTE5I4hDMLkHtodTsRVklNIz_EbAyIq5cnUf4XEhzXGs2oYAGH3UG7UeU8&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfATcWvJcv_aMC-25CZiGpOeFGDoZgdjoNfh4qT1K7ilgg&oe=644AA680"
-              class="rounded-circle mb-3" style="width: 50px;"
-              alt="Avatar"/>
-            <span style="color: #eb5d1e" class="m-2"><b> {{accountName}}</b></span>
+            <ng-container *ngIf="accounts">
+              <img
+                [src]="accounts.avatar"
+                class="rounded-circle mb-3" style="width: 50px;"
+                alt="Avatar"/></ng-container>
+              <span style="color: #eb5d1e" class="m-2"><b> {{accountName}}</b></span>
+
           </div>
           <div class="dropdown-content p-0">
-            <div class=" getstarted" routerLink="/security/change-password">
+            <div *ngIf="accounts" class=" getstarted" routerLink="/account">
+              <button class="btn">Thông tin cá nhân</button>
+            </div>
+            <div *ngIf="accounts" class=" getstarted" routerLink="/order/history">
+              <button class="btn">Lịch sử mua hàng</button>
+            </div>
+            <div *ngIf="accounts" class=" getstarted" routerLink="/security/change-password">
               <button class="btn">Đổi mật khẩu</button>
             </div>
-            <div class=" getstarted" (click)="logOut()">
+            <div *ngIf="accounts" class=" getstarted" (click)="logOut()">
               <button class="btn">Đăng xuất</button>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-md-2">
       </div>
     </div>

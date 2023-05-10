@@ -52,4 +52,9 @@ public class CartService implements ICartService {
         cartRepository.deleteById(id);
     }
 
+    @Override
+    public void deleteByUsername(String username) {
+        cartRepository.deleteCartByUsername(username);
+    }
+
 }

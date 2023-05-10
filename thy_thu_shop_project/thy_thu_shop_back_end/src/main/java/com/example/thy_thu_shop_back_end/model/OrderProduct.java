@@ -11,8 +11,7 @@ public class OrderProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long orderId;
-    @Column(columnDefinition = "varchar(50)", nullable = false)
-    private String codeOrder;
+
     @Column(columnDefinition = "dateTime", nullable = false)
     private String timeOrder;
     @Column(columnDefinition = "float", nullable = false)
@@ -24,9 +23,8 @@ public class OrderProduct {
     @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
 
-    public OrderProduct(Long orderId, String codeOrder, String timeOrder, float totalPrice, Account account, Set<OrderDetail> orderDetailSet) {
+    public OrderProduct(Long orderId, String timeOrder, float totalPrice, Account account, Set<OrderDetail> orderDetailSet) {
         this.orderId = orderId;
-        this.codeOrder = codeOrder;
         this.timeOrder = timeOrder;
         this.totalPrice = totalPrice;
         this.account = account;
@@ -42,14 +40,6 @@ public class OrderProduct {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
-    }
-
-    public String getCodeOrder() {
-        return codeOrder;
-    }
-
-    public void setCodeOrder(String codeOrder) {
-        this.codeOrder = codeOrder;
     }
 
     public String getTimeOrder() {

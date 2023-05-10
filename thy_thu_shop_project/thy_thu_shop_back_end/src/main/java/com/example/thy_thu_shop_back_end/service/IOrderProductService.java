@@ -9,7 +9,7 @@ public interface IOrderProductService {
     OrderProduct findById(Long id);
 
     List<OrderProduct> findAll();
-
+    List<OrderProduct> findOrderByAccountUsername(String username);
     void save(OrderProduct orderProduct);
 
     void delete(Long id);

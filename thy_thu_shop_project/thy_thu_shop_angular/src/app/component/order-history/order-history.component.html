@@ -1,0 +1,97 @@
+<section class=" " style="background-color: #eee;">
+  <div class="container py-5 ">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div ><h5 class=" text-success">
+                <i class="fas fa-long-arrow-alt-left me-2 "></i><span (click)="goToBack()">Quay lại</span></h5>
+              </div>
+              <h3 class=" d-flex justify-content-center text-success">Lịch sử mua hàng</h3>
+              <hr class="my-6 text-success">
+              <div class="card mb-3 text-center text-success">
+                <div class="card-body">
+                  <div class=" row d-flex justify-content-between">
+                    <div class="col-md-3 d-flex flex-row align-items-center ">
+                      <span class="d-flex flex-row align-items-center text-center"><b>STT</b></span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-row align-items-center ">
+                      <span class="d-flex flex-row align-items-center text-center"><b>Mã đặt hàng</b></span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-row align-items-center ">
+                      <span class="d-flex flex-row align-items-center text-center"><b>Tiền thanh toán</b></span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-row align-items-center ">
+                      <span class="d-flex flex-row align-items-center text-center"><b>Thời gian</b></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3 text-center text-success"
+                   *ngFor="let order of orders | paginate: { itemsPerPage: 3, currentPage: page}; index as i">
+                <button class="btn btn-outline-success form-control" (click)="showOrderDetail(order)">
+                  <div class="card-body">
+                    <div class=" row d-flex justify-content-between">
+                      <div class="col-md-3 d-flex flex-row align-items-center">
+                        <span class="d-flex flex-row align-items-center" style="text-align: center">{{i + 1}}</span>
+                      </div>
+                      <div class="col-md-3 d-flex flex-row align-items-center ">
+                        <span class="d-flex flex-row align-items-center text-center">ORD{{order.orderId}}</span>
+                      </div>
+                      <div class="col-md-3 d-flex flex-row align-items-center ">
+                        <span class="d-flex flex-row align-items-center text-center">{{order.totalPrice}}</span>
+                      </div>
+                      <div class="col-md-3 d-flex flex-row align-items-center ">
+                        <span class="d-flex flex-row align-items-center text-center">{{order.timeOrder}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+              <pagination-controls class="d-flex justify-content-center"
+                                   (pageChange)="page = $event"></pagination-controls>
+              <div *ngIf="showDetail">
+                <hr>
+                <h4>Chi tiết đơn hàng - {{orderCode}}</h4>
+                <div class="" *ngFor="let orderDetail of orderDetails">
+                  <div class="card-body">
+                    <div class=" row d-flex justify-content-between">
+                      <div class="col-md-3 d-flex flex-row align-items-center">
+                        <div>
+                          <ng-container *ngIf="orderDetail.product.images">
+                            <a routerLink="/product/detail/{{orderDetail.product.productId}}">
+                              <img
+                                [src]="orderDetail.product.images[0].img"
+                                class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                            </a>
+                          </ng-container>
+                        </div>
+                        <div class="ms-3">
+                          <h5 class="small mb-0">{{orderDetail.product.productName}}</h5>
+                        </div>
+                      </div>
+                      <div class="col-md-3 d-flex flex-row align-items-center">
+                        <span>Giá :{{orderDetail.product.price | currency:'VND':'symbol':'1.0-0'}}</span>
+                      </div>
+                      <div class="col-md-3 d-flex flex-row align-items-center">
+                        <span>Số lượng : {{orderDetail.quantity}}</span>
+                      </div>
+                      <div class="col-md-3 d-flex flex-row align-items-center">
+                        <button class="btn btn-outline-success"><span
+                          routerLink="/product/detail/{{orderDetail.product.productId}}">Mua lại sản phẩm này</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>

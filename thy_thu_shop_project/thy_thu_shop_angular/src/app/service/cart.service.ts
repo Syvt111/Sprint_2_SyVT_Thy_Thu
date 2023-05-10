@@ -19,6 +19,7 @@ export class CartService {
   private cartLength = new BehaviorSubject<number>(0);
   private quantityProductDetail = new BehaviorSubject<number>(0);
   private totalPrice = new BehaviorSubject<number>(0);
+  private totalPriceAndShip = new BehaviorSubject<number>(0);
   private carts = new BehaviorSubject<Cart[]>(null);
 
   constructor(private http: HttpClient,
@@ -147,6 +148,7 @@ export class CartService {
     let cartLengthUpdate = 0;
     let totalQuantityUpdate = 0;
     let totalPriceUpdate = 0;
+    let totalPriceAndShipUpdate = 0;
     this.findAllCartByUsername(username).subscribe(carts => {
       cartsUpdate = carts;
       cartLengthUpdate = carts.length;
@@ -154,6 +156,7 @@ export class CartService {
       for (const cart of carts) {
         totalQuantityUpdate += cart.quantity;
         totalPriceUpdate += (cart.quantity * cart.product.price);
+        totalPriceAndShipUpdate = totalPriceUpdate + 20000;
         this.imageService.findImageByProductId(cart.product.productId).subscribe(images => {
           cart.product.images = images;
         });
@@ -162,6 +165,7 @@ export class CartService {
       this.cartLength.next(cartLengthUpdate);
       this.totalQuantity.next(totalQuantityUpdate);
       this.totalPrice.next(totalPriceUpdate);
+      this.totalPriceAndShip.next(totalPriceAndShipUpdate);
 
     });
   }
@@ -186,6 +190,10 @@ export class CartService {
     return this.totalPrice.asObservable();
   }
 
+  getTotalPriceAndShip(): Observable<number> {
+    return this.totalPriceAndShip.asObservable();
+  }
+
   saveCart(cart: Cart): Observable<Cart> {
     return this.http.post<Cart>(this.URL_API, cart);
   }
@@ -196,5 +204,8 @@ export class CartService {
 
   deleteCartById(cartId: number): Observable<Cart> {
     return this.http.delete<Cart>(this.URL_API + '/' + cartId);
+  }
+  deleteCartByUsername(): Observable<Cart> {
+    return this.http.delete<Cart>(this.URL_API + '/username');
   }
 }

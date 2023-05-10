@@ -4,13 +4,20 @@
       <div class="col">
         <div class="card">
           <div class="card-body p-4">
-
             <div class="row">
               <!--Giỏ hàng -->
               <div class="col-lg-8">
-                <h5 class="mb-3">
-                  <a routerLink="/product/list" class="text-body text-success btn"><i
-                    class="fas fa-long-arrow-alt-left me-2 "></i><b>Quay lại shop</b></a></h5>
+                <div class="row">
+                  <div class="col-md-4"> <h5 class="mb-3">
+                    <a routerLink="/product/list" class="text-body text-success btn"><i
+                      class="fas fa-long-arrow-alt-left me-2 "></i><b>Quay lại shop</b></a></h5>
+                  </div>
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4"> <h5 class="mb-3">
+                    <a routerLink="/order/history" class="text-body text-success btn"><i
+                      class="fas fa-history me-2 "></i><b>Lịch sử đặt hàng</b></a></h5></div>
+                </div>
+
                 <hr>
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -21,7 +28,6 @@
                 </div>
 
                 <div class="card mb-3" *ngFor="let cart of carts | async">
-
                   <div class="card-body">
                     <div class=" row d-flex justify-content-between">
                       <div class="col-md-5 d-flex flex-row align-items-center name-img">
@@ -83,50 +89,8 @@
                 <div class="card bg-success text-white rounded-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0">Thanh Toán</h5>
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                           class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+                      <h5 class=" d-flex justify-content-center">Thanh Toán</h5>
                     </div>
-
-                    <p class="small mb-2">Hình thức thanh toán</p>
-                    <a href="#!" type="submit" class="text-white"><i
-                      class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i
-                      class="fab fa-cc-visa fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
-
-                    <div class="mt-4">
-                      <div class="form-outline form-white mb-4">
-                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                               placeholder="Nhập tên chủ thẻ"/>
-                        <label class="form-label" for="typeName">Tên chủ thẻ</label>
-                      </div>
-
-                      <div class="form-outline form-white mb-4">
-                        <input type="text" id="typeTextCart" class="form-control form-control-lg" siez="17"
-                               placeholder="1234 5678 9012 3457" minlength="19" maxlength="19"/>
-                        <label class="form-label" for="typeTextCart">Số thẻ</label>
-                      </div>
-
-                      <div class="row mb-4">
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="text" id="typeExp" class="form-control form-control-lg"
-                                   placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7"/>
-                            <label class="form-label" for="typeExp">Ngày hết hạn</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="password" id="typeText" class="form-control form-control-lg"
-                                   placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3"/>
-                            <label class="form-label" for="typeText">Cvv</label>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
                     <hr class="my-4">
 
                     <div class="d-flex justify-content-between">
@@ -141,17 +105,24 @@
                     <hr class="my-4">
                     <div class="d-flex justify-content-between mb-4">
                       <h5 class="mb-2 text-danger"><i>Tổng tiền</i></h5>
-                      <h5 class="mb-2 text-danger"><i>{{totalPriceAndShip  | currency:'VND':'symbol':'1.0-0'}}</i></h5>
+                      <h5 class="mb-2 text-danger"><i>{{totalPriceAndShip | async | currency:'VND':'symbol':'1.0-0'}}</i></h5>
                     </div>
 
-                    <button type="button" class="btn btn-outline-success bg-light btn-block btn-lg">
+                    <button type="button" class="btn btn-outline-success bg-light btn-block btn-lg" (click)="toPay()" >
                       <div class="d-flex justify-content-between">
-                        <span>{{totalPriceAndShip  | currency:'VND':'symbol':'1.0-0'}}&nbsp;<i
+                        <span>{{totalPriceAndShip  | async | currency:'VND':'symbol':'1.0-0'}}&nbsp;<i
                           class="fas fa-long-arrow-alt-right ms-2"></i></span>
                         <span>&nbsp;&nbsp;Thanh toán</span>
+                        <br>
                       </div>
                     </button>
-
+                    <hr class="my-4">
+                    <div [hidden]="!checkOutFlag" class="pay">
+                    <h5>Chọn hình thức thanh toán</h5>
+                      <div id="myPaypal">
+                        <div id="myPaypalButtons"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

@@ -18,5 +18,6 @@ public interface ICartService {
     void save(Cart cart);
 
     void delete(int id);
+    void deleteByUsername(String username);
 
 }

@@ -48,11 +48,11 @@ public class ProductService implements IProductService {
 
     @Override
     public void save(Product orderProduct) {
-
+        productRepository.save(orderProduct);
     }
 
     @Override
     public void delete(Long id) {
-
+        productRepository.deleteById(id);
     }
 }
