@@ -10,17 +10,20 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 @Transactional
 public interface ICartRepository extends JpaRepository<Cart,Integer> {
     @Query(value = "SELECT cart.* FROM cart cart join account ac on cart.account_id = ac.account_id WHERE ac.username =:username", nativeQuery = true)
     List<Cart> findCartByAccountUsername(@Param("username") String username);
+    @Query(value = "SELECT cart.* FROM cart cart join account ac on cart.account_id = ac.account_id WHERE ac.username =:username", nativeQuery = true)
+    Set<Cart> findSetCartByAccountUsername(@Param("username") String username);
     @Modifying
     @Query(value = "DELETE c FROM cart c INNER JOIN account a ON c.account_id = a.account_id WHERE a.username =:username", nativeQuery = true)
     void deleteCartByUsername(String username);
 
-    @Query(value = "SELECT cart.* FROM cart cart join account ac on cart.account_id = ac.account_id WHERE ac.username =:username and cart.product_id =:productId", nativeQuery = true)
+    @Query(value = "SELECT cart.* FROM cart cart join account ac on cart.account_id = ac.account_id WHERE ac.username =:username and cart.product_id =:productId LIMIT 1", nativeQuery = true)
     Cart findCartByAccountUsernameAndProductId(@Param("username") String username,@Param("productId") Long productId );
 
 }

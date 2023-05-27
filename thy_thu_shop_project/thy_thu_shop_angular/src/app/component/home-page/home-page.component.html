@@ -11,7 +11,7 @@
         <div class="row p-5">
           <div class="mx-auto col-md-8 col-lg-5 order-lg-last">
             <img class="img-fluid"
-                 src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/301477662_571634764570713_2475129198263092688_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=gQ0INroYhZ8AX_hu8Lt&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfAEsn6Qh_iyJNB1ZCdPva9eFfy1FFW6HT6yPOzDE2zbCQ&oe=6440B7A4"
+                 src="https://firebasestorage.googleapis.com/v0/b/graduationthesissyvt.appspot.com/o/thy_thu_project%2Fhomepage%2F345442173_969562820705448_6476268849844563955_n.jpg?alt=media&token=3321c9f3-2834-4fcc-9e7e-062b671b21bb"
                  alt="">
           </div>
           <div class="col-lg-7 mb-0 d-flex align-items-center">
@@ -32,7 +32,7 @@
         <div class="row p-5">
           <div class="mx-auto col-md-8 col-lg-5 order-lg-last">
             <img class="img-fluid"
-                 src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/301216827_570903671310489_3343444190132359308_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=ombGkXEO260AX_rsRvw&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBfGWhRJseRpserGpqYfsgp5mRZEDGc1BZW7Xn7X4XFvg&oe=64426349"
+                 src="https://firebasestorage.googleapis.com/v0/b/graduationthesissyvt.appspot.com/o/thy_thu_project%2Fhomepage%2F154561770471.jpg?alt=media&token=36b2c10e-d12e-44d3-ab86-2732a35908f2"
                  alt="">
           </div>
           <div class="col-lg-6 mb-0 d-flex align-items-center">
@@ -53,7 +53,7 @@
         <div class="row p-5">
           <div class="mx-auto col-md-8 col-lg-5 order-lg-last">
             <img class="img-fluid"
-                 src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/301154613_570903414643848_2054607940859568896_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Nko3e4oP2EkAX_GnFyy&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfCmmarrjpSk6nYHZ-Emjmce1tl-M_eDTANvzCh12UhiuQ&oe=6441B590"
+                 src="https://firebasestorage.googleapis.com/v0/b/graduationthesissyvt.appspot.com/o/thy_thu_project%2Fhomepage%2FSf2dd8f5c276b4d63a9d5bb832d844705X.jpg?alt=media&token=f03c590c-b92d-4473-b8df-662070f14dc1"
                  alt="">
           </div>
           <div class="col-lg-7 mb-0 d-flex align-items-center">
@@ -128,10 +128,10 @@
       </div>
     </div>
     <div class="carousel-inner product-links-wap" role="listbox">
-      <div class="carousel-item active">
+      <div class="carousel-item active ">
         <div class="row" >
           <div class="p-2 pb-3 col-md-2" *ngFor="let product of products">
-            <div class="product-wap card rounded-0">
+            <div class="product-wap card rounded-0 hover-zoom ripple ripple-surface">
               <div class="card rounded-0">
                 <ng-container *ngIf="product.images && product.images.length > 0">
                 <img class="card-img rounded-0 img-fluid"  [src]="product.images[0].img">
@@ -149,7 +149,6 @@
               <div class="card-body">
                 <a href="/product/detail/{{product.productId}}" class="h3 text-decoration-none">{{product.productName}}</a>
                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                  <li>{{product.productSize}}</li>
                   <li class="pt-2">
                     <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                     <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>

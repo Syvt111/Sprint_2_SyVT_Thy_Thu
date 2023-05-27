@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map, mergeAll, switchMap} from 'rxjs/operators';
+import {BehaviorSubject, forkJoin, Observable} from 'rxjs';
+import {map, mergeAll, switchMap, tap} from 'rxjs/operators';
 import {Cart} from '../model/cart';
 import {ProductService} from './product.service';
 import {AccountService} from './account.service';
@@ -143,6 +143,47 @@ export class CartService {
     });
   }
 
+  // updateCartsQuantity(username: string): void {
+  //   this.findAllCartByUsername(username).pipe(
+  //     switchMap((carts) => {
+  //       const productIds = carts.map((cart) => cart.product.productId);
+  //       const imageRequests = productIds.map((id) =>
+  //         this.imageService.findImageByProductId(id)
+  //       );
+  //       return forkJoin(imageRequests).pipe(
+  //         tap((images) => {
+  //           carts.forEach((cart, index) => {
+  //             cart.product.images = images[index];
+  //           });
+  //         }),
+  //         map(() => {
+  //           const cartLength = carts.length;
+  //           const totalQuantity = carts.reduce((acc, cur) => acc + cur.quantity, 0);
+  //           const totalPrice = carts.reduce(
+  //             (acc, cur) => acc + cur.quantity * cur.product.price,
+  //             0
+  //           );
+  //           const totalPriceAndShip = totalPrice + 20000;
+  //           return {carts, cartLength, totalQuantity, totalPrice, totalPriceAndShip};
+  //         })
+  //       );
+  //     }),
+  //     tap(({carts, cartLength, totalQuantity, totalPrice, totalPriceAndShip}) => {
+  //       this.carts.next(carts);
+  //       this.cartLength.next(cartLength);
+  //       this.totalQuantity.next(totalQuantity);
+  //       this.totalPrice.next(totalPrice);
+  //       this.totalPriceAndShip.next(totalPriceAndShip);
+  //     })
+  //   ).subscribe(({carts, cartLength, totalQuantity, totalPrice, totalPriceAndShip}) => {
+  //     this.carts.next(carts);
+  //     this.cartLength.next(cartLength);
+  //     this.totalQuantity.next(totalQuantity);
+  //     this.totalPrice.next(totalPrice);
+  //     this.totalPriceAndShip.next(totalPriceAndShip);
+  //   });
+  // }
+
   updateCartsQuantity(username: string): void {
     let cartsUpdate;
     let cartLengthUpdate = 0;
@@ -169,6 +210,7 @@ export class CartService {
 
     });
   }
+
 
   getTotalQuantity$(): Observable<number> {
     return this.totalQuantity.asObservable();
@@ -205,6 +247,7 @@ export class CartService {
   deleteCartById(cartId: number): Observable<Cart> {
     return this.http.delete<Cart>(this.URL_API + '/' + cartId);
   }
+
   deleteCartByUsername(): Observable<Cart> {
     return this.http.delete<Cart>(this.URL_API + '/username');
   }

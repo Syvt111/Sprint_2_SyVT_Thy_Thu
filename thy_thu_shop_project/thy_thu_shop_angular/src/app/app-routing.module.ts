@@ -7,6 +7,8 @@ import {LoginComponent} from './component/security-authentication/login/login.co
 import {ProductListComponent} from './component/product-list/product-list.component';
 import {PayPalComponent} from './component/pay-pal/pay-pal.component';
 import {OrderHistoryComponent} from './component/order-history/order-history.component';
+import {ErrorComponent} from './component/error/error.component';
+import {ProductCreateComponent} from './component/product-create/product-create.component';
 
 
 const routes: Routes = [
@@ -14,9 +16,11 @@ const routes: Routes = [
   {path: 'product/detail/:productId', component: ProductDetailComponent},
   {path: 'product/list', component: ProductListComponent},
   {path: 'product/cart', component: CartComponent},
+  {path: 'product/add', component: ProductCreateComponent},
   {path: 'login', component: LoginComponent},
   {path: 'paypal', component: PayPalComponent},
   {path: 'order/history', component: OrderHistoryComponent},
+  {path: '**', component: ErrorComponent}
 ];
 
 @NgModule({

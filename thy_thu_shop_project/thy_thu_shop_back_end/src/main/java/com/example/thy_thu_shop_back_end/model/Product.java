@@ -12,8 +12,6 @@ public class Product {
     @Column(name = "product_id")
     private Long productId;
     @Column(columnDefinition = "varchar(50)", nullable = false)
-    private String productCode;
-    @Column(columnDefinition = "varchar(50)", nullable = false)
     private String productName;
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String brand;
@@ -39,9 +37,8 @@ public class Product {
     @JsonIgnore
     private Set<Cart> cartSet;
 
-    public Product(Long productId, String productCode, String productName, String brand, float price, String description, boolean flagDelete, Category category, Set<Image> imageSet, Set<OrderDetail> orderDetailSet, Set<Cart> cartSet) {
+    public Product(Long productId, String productName, String brand, float price, String description, boolean flagDelete, Category category, Set<Image> imageSet, Set<OrderDetail> orderDetailSet, Set<Cart> cartSet) {
         this.productId = productId;
-        this.productCode = productCode;
         this.productName = productName;
         this.brand = brand;
         this.price = price;
@@ -80,13 +77,6 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
 
     public String getProductName() {
         return productName;

@@ -1,0 +1,10 @@
+
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Èâ“çşÿÿÿÿ8ÏªœÈÿ0
+x
+java:S2159"VRemove this call to "equals"; comparisons between unrelated types always return false.(Òş’ıÿÿÿÿ8×ªœÈÿ0
+U	java:S106"9Replace this use of System.out or System.err by a logger.(†²óì8ØªœÈÿ0
+f
+java:S1858"D"s" is already a string, there's no need to call "toString()" on it.(›¨¹£úÿÿÿÿ8ØªœÈÿ0
+U	java:S106"9Replace this use of System.out or System.err by a logger.(æúÑ•8ØªœÈÿ0
+U	java:S106
+"9Replace this use of System.out or System.err by a logger.(É‰íû8ÚªœÈÿ0

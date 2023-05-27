@@ -1,16 +1,16 @@
-<div class="fixed-element container-fluid ">
+<div class="fixed-element container-fluid d-flex justify-content-center" style="position: sticky; top: 80px; position: -webkit-sticky; z-index: 5;">
   <div class="row container-fluid  d-flex justify-content-center"
-       style="background-color: white; margin-top: 2%;margin-bottom: 2%">
+       style="background-color: white; margin-top: 2%;margin-bottom: 2%;height: 100px ">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <div class="row">
+      <div class="row" style="margin-top: 2%; height: 100%">
         <div class="col-md-2">
-          <div class="row-action" style="margin-bottom: 1%">
+          <div class="row-action" style="margin-bottom: 2%">
             <div class="row">
               <a routerLink="/progress/add"
                  style="text-decoration: none">
                 <button type="button" class="btn btn-outline-success  mx-auto"
-                        style="border-radius: 15px;">Thêm mới sản phẩm
+                        style="border-radius: 15px;"><a routerLink="/product/add">Thêm mới sản phẩm</a>
                 </button>
               </a>
             </div>
@@ -48,13 +48,13 @@
 <div class="row container-fluid">
   <div class="col-md-1"></div>
   <div class="col-md-10">
-    <div class="carousel-inner product-links-wap" role="listbox">
+    <div class="carousel-inner product-links-wap " role="listbox">
       <div class="carousel-item active">
-        <div class="row">
+        <div class="row ">
           <div *ngIf="flag"><h5 class="text-danger text-center">Danh sách sản phẩm chưa có hoặc đã hết </h5></div>
-          <div class="p-2 pb-3 col-md-2" *ngFor="let product of products">
-            <div class="product-wap card rounded-0">
-              <div class="card rounded-0">
+          <div class="p-2 pb-3 col-md-3" *ngFor="let product of products">
+            <div class="product-wap card rounded-0 hover-zoom ripple ripple-surface">
+              <div class="card rounded-0 ">
                 <ng-container *ngIf="product.images && product.images.length > 0">
                   <img class="card-img rounded-0 img-fluid" [src]="product.images[0].img">
                 </ng-container>
@@ -80,7 +80,6 @@
                 <a routerLink="/product/detail/{{product.productId}}"
                    class="h3 text-decoration-none">{{product.productName}}</a>
                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                  <li>{{product.productSize}}</li>
                   <li class="pt-2">
                     <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                     <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>

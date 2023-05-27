@@ -20,6 +20,8 @@ import {PayPalComponent} from './component/pay-pal/pay-pal.component';
 import {CommonModule} from '@angular/common';
 import { OrderHistoryComponent } from './component/order-history/order-history.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ErrorComponent } from './component/error/error.component';
+import { ProductCreateComponent } from './component/product-create/product-create.component';
 
 
 
@@ -37,6 +39,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     LoginComponent,
     PayPalComponent,
     OrderHistoryComponent,
+    ErrorComponent,
+    ProductCreateComponent,
   ],
     imports: [
         BrowserModule,

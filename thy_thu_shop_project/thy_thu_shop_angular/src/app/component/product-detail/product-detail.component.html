@@ -24,13 +24,15 @@
             <div class="carousel-inner product-links-wap" role="listbox">
 
               <!--First slide-->
-              <div class="carousel-item active">
-                <div class="row">
+              <div class="carousel-item active ">
+                <div class="row ">
                   <ng-container *ngIf="productDetail">
-                    <div class="col-3" *ngFor="let image of productDetail.images">
-                      <a (click)="selectImage(image.img)">
-                        <img class="card-img img-fluid" [src]="image.img" alt="Product Image">
-                      </a>
+                    <div class="col-3 " *ngFor="let image of productDetail.images">
+                      <button (click)="selectImage(image.img)"
+                              class=" btn-outline-light rounded-0 hover-zoom ripple ripple-surface">
+                        <img class="card-img img-fluid rounded-0 hover-zoom ripple ripple-surface" [src]="image.img"
+                             alt="Product Image">
+                      </button>
                     </div>
                   </ng-container>
                 </div>
@@ -80,9 +82,6 @@
               <h6>Mô tả:</h6>
               <p>{{productDetail.description}}</p>
               <h6>Mã sản phẩm :</h6>
-              <ul class="list-unstyled pb-3">
-                <li>{{productDetail.productCode}}</li>
-              </ul>
               <hr class="bg-success">
               <div>
                 <input type="hidden" name="product-title" value="Activewear">
@@ -96,17 +95,21 @@
                     <div class="col-md-6 d-flex justify-content-center">
                       <div class="row ">
                         <div class="col-md-2"></div>
-                        <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success" id="btn-minus"
-                                                           (click)="subProductDetailFormCart(productDetail.productId)"><i
+                        <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success"
+                                                                                  id="btn-minus"
+                                                                                  (click)="subProductDetailFormCart(productDetail.productId)"><i
                           class="fas fa-minus"></i></span>
                         </div>
                         <div class="col-md-3 d-flex justify-content-center">
                           <ng-container *ngIf="quantityDetail">
-                            <input class="form-control text-dark" #quantityUpdate (change)="addToCartByQuantity(productDetail.productId,quantityUpdate.value)"  value="{{quantityDetail| async}}">
+                            <input class="form-control text-dark" #quantityUpdate
+                                   (change)="addToCartByQuantity(productDetail.productId,quantityUpdate.value)"
+                                   value="{{quantityDetail| async}}">
                           </ng-container>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success" id="btn-plus"
-                                                           (click)="addProductDetailToCart(productDetail.productId)"><i
+                        <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success"
+                                                                                  id="btn-plus"
+                                                                                  (click)="addProductDetailToCart(productDetail.productId)"><i
                           class="fas fa-plus"></i></span>
                         </div>
                         <div class="col-md-1"></div>
@@ -131,7 +134,8 @@
 
                 <div class="row pb-3">
                   <div class="col d-grid">
-                    <button type="submit" class="btn btn-outline-success btn-lg" name="submit" routerLink="/product/cart"
+                    <button type="submit" class="btn btn-outline-success btn-lg" name="submit"
+                            routerLink="/product/cart"
                             value="buy">Mua hàng ngay
                     </button>
                   </div>
@@ -156,95 +160,100 @@
 <!-- Start Relation Product -->
 <section class="py-1">
   <div class="container-xxl">
+
     <div class="row text-left p-2 pb-3">
       <h4>Sản phẩm liên quan</h4>
     </div>
 
-    <!--Start Carousel Wrapper-->
-    <div class="row">
-      <!--Start Controls-->
-      <div class="col-1 align-self-center">
-        <a href="#multi-item-example1" (click)="prevSlide()" role="button" data-bs-slide="prev">
-          <i class="text-dark fas fa-chevron-left"></i>
-          <span class="sr-only">Previous</span>
-        </a>
-      </div>
-      <!--End Controls-->
-      <!--Start Carousel Wrapper-->
-      <div id="multi-item-example1" class="col-10 carousel slide carousel-multi-item " data-bs-ride="carousel">
-        <!--Start Slides-->
-        <div class="carousel-inner product-links-wap" role="listbox">
+    Start Carousel Wrapper
+        <div class="row">
+          <!--Start Controls-->
+          <div class="col-1 align-self-center">
+            <a href="#multi-item-example1" (click)="prevSlide()" role="button" data-bs-slide="prev">
+              <i class="text-dark fas fa-chevron-left"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+          </div>
 
-          <!--Second slide-->
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="p-2 pb-3 col-md-3" *ngFor="let product of products; index as i">
-                <div *ngIf="i >= currentSlideIndex * 4 && i < (currentSlideIndex + 1) * 4" class="card">
-                  <div class="product-wap card rounded-0">
-                    <div class="card rounded-0">
-                      <ng-container *ngIf="product.images && product.images.length > 0">
-                        <img class="card-img rounded-0 img-fluid" [src]="product.images[0].img">
-                      </ng-container>
-                      <div
-                        class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                        <ul class="list-unstyled">
-                          <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a>
-                          </li>
-                          <li><a class="btn btn-success text-white mt-2" href="/product/detail/{{product.productId}}"><i
-                            class="far fa-eye"></i></a>
-                          </li>
-                          <li>
-                            <button type="button" class="btn btn-success text-white mt-2"
-                                    (click)="addProductToCart(product.productId)"><i class="fas fa-cart-plus"></i>
-                            </button>
-                        </ul>
+          <!--End Controls-->
+          <!--Start Carousel Wrapper-->
+
+          <div id="multi-item-example1" class="col-10 carousel  slide carousel-multi-item hover-zoom ripple ripple-surface"
+               data-bs-ride="carousel" loading="lazy">
+            <!--Start Slides-->
+            <div class="carousel-inner product-links-wap" role="listbox">
+
+              <!--Second slide-->
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="p-2 pb-3 col-md-3" *ngFor="let product of products; index as i">
+                    <div *ngIf="i >= currentSlideIndex * 4 && i < (currentSlideIndex + 1) * 4" class="card">
+                      <div class="product-wap card rounded-0 hover-zoom ripple ripple-surface">
+                        <div class="card rounded-0 bg-image ">
+                          <ng-container *ngIf="product.images && product.images.length > 0">
+                            <img class="card-img rounded-0 img-fluid" [src]="product.images[0].img" >
+                          </ng-container>
+                          <div
+                            class="card-img-overlay hover-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <ul class="list-unstyled">
+                              <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a>
+                              </li>
+                              <li><a class="btn btn-success text-white mt-2" href="/product/detail/{{product.productId}}"><i
+                                class="far fa-eye"></i></a>
+                              </li>
+                              <li>
+                                <button type="button" class="btn btn-success text-white mt-2"
+                                        (click)="addProductToCart(product.productId)"><i class="fas fa-cart-plus"></i>
+                                </button>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <a href="/product/detail/{{product.productId}}"
+                             class="h3 text-decoration-none">{{product.productName}}</a>
+                          <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                            <li class="pt-2">
+                              <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                              <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                              <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                              <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                              <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                            </li>
+                          </ul>
+                          <ul class="list-unstyled d-flex justify-content-center mb-1">
+                            <li>
+                              <i class="text-warning fa fa-star"></i>
+                              <i class="text-warning fa fa-star"></i>
+                              <i class="text-warning fa fa-star"></i>
+                              <i class="text-warning fa fa-star"></i>
+                              <i class="text-muted fa fa-star"></i>
+                            </li>
+                          </ul>
+                          <p class="text-center mb-0 text-danger">{{product.price | currency:'VND':'symbol':'1.0-0' }}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div class="card-body">
-                      <a href="/product/detail/{{product.productId}}"
-                         class="h3 text-decoration-none">{{product.productName}}</a>
-                      <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                        <li>{{product.productSize}}</li>
-                        <li class="pt-2">
-                          <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                          <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                          <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                          <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                          <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                        </li>
-                      </ul>
-                      <ul class="list-unstyled d-flex justify-content-center mb-1">
-                        <li>
-                          <i class="text-warning fa fa-star"></i>
-                          <i class="text-warning fa fa-star"></i>
-                          <i class="text-warning fa fa-star"></i>
-                          <i class="text-warning fa fa-star"></i>
-                          <i class="text-muted fa fa-star"></i>
-                        </li>
-                      </ul>
-                      <p class="text-center mb-0 text-danger">{{product.price | currency:'VND':'symbol':'1.0-0' }}</p>
                     </div>
                   </div>
                 </div>
               </div>
+              <!--/.Second slide-->
+
+
             </div>
+            <!--End Slides-->
           </div>
-          <!--/.Second slide-->
 
-
+          <!--End Carousel Wrapper-->
+          <!--Start Controls-->
+          <div class="col-1 align-self-center">
+            <a href="#multi-item-example1" (click)="nextSlide()" role="button" data-bs-slide="next">
+              <i class="text-dark fas fa-chevron-right"></i>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <!--End Controls-->
         </div>
-        <!--End Slides-->
-      </div>
-      <!--End Carousel Wrapper-->
-      <!--Start Controls-->
-      <div class="col-1 align-self-center">
-        <a href="#multi-item-example1" (click)="nextSlide()" role="button" data-bs-slide="next">
-          <i class="text-dark fas fa-chevron-right"></i>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-      <!--End Controls-->
-    </div>
+
 
   </div>
 </section>
@@ -253,3 +262,98 @@
 
 
 
+<!--<div class="row">-->
+<!--  <div class="col-1 align-self-center">-->
+<!--    <button class="carousel-control-prev" type="button" data-bs-target="#multi-item-example1" data-bs-slide="prev">-->
+<!--      <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--      <span class="visually-hidden">Previous</span>-->
+<!--    </button>-->
+<!--  </div>-->
+
+<!--  <div class="col-10">-->
+<!--    <div class="carousel slide carousel-multi-item hover-zoom ripple ripple-surface" id="multi-item-example1"-->
+<!--         data-bs-ride="carousel">-->
+
+<!--      <div class="carousel-inner product-links-wap" role="listbox">-->
+<!--        <div class="carousel-item active">-->
+
+<!--          <div class="row">-->
+<!--            <div class="col-md-3">-->
+<!--              <div *ngFor="let product of products; index as i">-->
+<!--                <div *ngIf="i >= currentSlideIndex * 4 && i < (currentSlideIndex + 1) * 4" class="card mb-2">-->
+<!--                  <div class="product-wap card rounded-0 hover-zoom ripple ripple-surface">-->
+<!--                    <div class="card rounded-0 bg-image ">-->
+<!--                      <ng-container *ngIf="product.images && product.images.length > 0">-->
+<!--                        <img class="card-img rounded-0 img-fluid" [src]="product.images[0].img">-->
+<!--                      </ng-container>-->
+<!--                      <div-->
+<!--                        class="card-img-overlay hover-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                          <li>-->
+<!--                            <a class="btn btn-success text-white" href="shop-single.html">-->
+<!--                              <i class="far fa-heart"></i>-->
+<!--                            </a>-->
+<!--                          </li>-->
+<!--                          <li>-->
+<!--                            <a class="btn btn-success text-white mt-2" href="/product/detail/{{product.productId}}">-->
+<!--                              <i class="far fa-eye"></i>-->
+<!--                            </a>-->
+<!--                          </li>-->
+<!--                          <li>-->
+<!--                            <button type="button" class="btn btn-success text-white mt-2"-->
+<!--                                    (click)="addProductToCart(product.productId)">-->
+<!--                              <i class="fas fa-cart-plus"></i>-->
+<!--                            </button>-->
+<!--                          </li>-->
+<!--                        </ul>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                      <a href="/product/detail/{{product.productId}}"-->
+<!--                         class="h3 text-decoration-none">{{product.productName}}</a>-->
+<!--                      <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">-->
+<!--                        <li class="pt-2">-->
+<!--                          <span class="product-color-dot color-dot-red float-start rounded-circle ms-1"></span>-->
+<!--                          <span class="product-color-dot color-dot-blue float-start rounded-circle ms-1"></span>-->
+<!--                          <span class="product-color-dot color-dot-black float-start rounded-circle ms-1"></span>-->
+<!--                          <span class="product-color-dot color-dot-light float-start rounded-circle ms-1"></span>-->
+<!--                          <span class="product-color-dot color-dot-green float-start rounded-circle ms-1"></span>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                      <ul class="list-unstyled d-flex justify-content-center mb-1">-->
+<!--                        <li>-->
+<!--                          <i class="text-warning fa fa-star"></i>-->
+<!--                          <i class="text-warning fa fa-star"></i>-->
+<!--                          <i class="text-warning fa fa-star"></i>-->
+<!--                          <i class="text-warning fa fa-star"></i>-->
+<!--                          <i class="text-muted fa fa-star"></i>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                      <p-->
+<!--                        class="text-center mb-0 text-danger">{{product.price | currency:'VND':'symbol':'1.0-0' }}</p>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;/.Second slide&ndash;&gt;-->
+
+
+<!--        </div>-->
+<!--        &lt;!&ndash;End Slides&ndash;&gt;-->
+<!--      </div>-->
+<!--      &lt;!&ndash;End Carousel Wrapper&ndash;&gt;-->
+<!--      &lt;!&ndash;Start Controls&ndash;&gt;-->
+<!--      <div class="col-1 align-self-center">-->
+<!--        <button class="carousel-control-next" type="button" data-bs-target="#multi-item-example1"-->
+<!--                data-bs-slide="next">-->
+<!--          <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--          <span class="visually-hidden">Next</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;End Controls&ndash;&gt;-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</div>-->

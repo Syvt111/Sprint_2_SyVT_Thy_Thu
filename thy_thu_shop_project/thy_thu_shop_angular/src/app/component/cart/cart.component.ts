@@ -43,6 +43,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
 
   loadCart(): void {
+    this.cartService.updateCartsQuantity(this.username);
     this.carts = this.cartService.getCarts();
     this.cartListLength = this.cartService.getCartLength();
     this.totalPrice = this.cartService.getTotalPrice();
@@ -74,7 +75,7 @@ export class CartComponent implements OnInit, AfterViewInit {
         render(
           {
             id: '#myPaypalButtons',
-            currency: 'VND',
+            currency: 'USA',
             value: (amountPayUSD).toFixed(2),
             onApprove: (details => {
               this.orderService.saveOrder().subscribe(() => {
@@ -86,6 +87,7 @@ export class CartComponent implements OnInit, AfterViewInit {
                 confirmButtonText: 'OK'
               });
               this.cartService.updateCartsQuantity(this.username);
+              this.checkOutFlag = false;
             })
           });
       }
@@ -106,20 +108,20 @@ export class CartComponent implements OnInit, AfterViewInit {
   subProductFormCart(cart: Cart) {
     this.checkOutFlag = false;
     this.countCheckOut = 0;
-    this.cartService.subProductFromCart(cart.product.productId, this.username);
+    this.cartService.subProductFromCart(cart.product?.productId, this.username);
   }
 
   addProductToCart(cart: Cart) {
     this.checkOutFlag = false;
     this.countCheckOut = 0;
-    this.cartService.addProductToCart(cart.product.productId, this.username);
+    this.cartService.addProductToCart(cart.product?.productId, this.username);
 
   }
 
   deleteProductFromCart(cart: Cart) {
     this.checkOutFlag = false;
     this.cartService.deleteCartById(cart.cartId).subscribe(() => {
-      this.cartService.updateQuantityProductDetail(this.username, cart.product.productId);
+      this.cartService.updateQuantityProductDetail(this.username, cart.product?.productId);
       this.cartService.updateCartsQuantity(this.username);
       this.countCheckOut = 0;
 

@@ -40,7 +40,7 @@
                         <span class="d-flex flex-row align-items-center text-center">ORD{{order.orderId}}</span>
                       </div>
                       <div class="col-md-3 d-flex flex-row align-items-center ">
-                        <span class="d-flex flex-row align-items-center text-center">{{order.totalPrice}}</span>
+                        <span class="d-flex flex-row align-items-center text-center">{{order.totalPrice | currency:'VND':'symbol':'1.0-0'}} </span>
                       </div>
                       <div class="col-md-3 d-flex flex-row align-items-center ">
                         <span class="d-flex flex-row align-items-center text-center">{{order.timeOrder}}</span>

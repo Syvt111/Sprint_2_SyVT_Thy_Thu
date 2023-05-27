@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ImageService implements IImageService {
@@ -36,5 +37,10 @@ public class ImageService implements IImageService {
     @Override
     public void delete(int id) {
         iImageRepository.deleteById(id);
+    }
+
+    @Override
+    public Set<Image> findSetImageByProductId(Long productId) {
+        return iImageRepository.findSetImageByProductId(productId);
     }
 }

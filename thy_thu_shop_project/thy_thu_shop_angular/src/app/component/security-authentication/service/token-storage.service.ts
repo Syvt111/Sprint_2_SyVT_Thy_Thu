@@ -58,7 +58,7 @@ export class TokenStorageService {
   getRole() {
     const user = this.getUser();
     if (user.roles) {
-      return user.roles[0];
+      return user.roles[1];
     } else {
       return null;
     }

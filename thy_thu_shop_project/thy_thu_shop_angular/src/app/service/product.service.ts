@@ -26,4 +26,8 @@ export class ProductService {
     return this.http.get<Product[]>(this.URL_API + '/product' + '?categoryIdSearch=' + categoryIdSearch +
       '&productNameSearch=' + productNameSearch);
   }
+
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.URL_API, product);
+  }
 }

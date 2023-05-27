@@ -33,7 +33,8 @@ export class HeaderComponent implements OnInit {
   loadHeader(): void {
     if (this.tokenStorageService.getToken()) {
       this.currentUser = this.tokenStorageService.getUser().username;
-      this.role = this.tokenStorageService.getUser().roles[0];
+      this.role = this.tokenStorageService.getUser().roles;
+      console.log(this.role);
       this.username = this.tokenStorageService.getUser().username;
       this.cartService.updateCartsQuantity(this.username);
       this.totalQuantity$ = this.cartService.getTotalQuantity$();

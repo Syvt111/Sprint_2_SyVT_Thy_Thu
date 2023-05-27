@@ -1,16 +1,21 @@
 package com.example.thy_thu_shop_back_end.controller;
 
 
+import com.example.thy_thu_shop_back_end.dto.ProductDTO;
 import com.example.thy_thu_shop_back_end.model.Image;
 import com.example.thy_thu_shop_back_end.model.Product;
 import com.example.thy_thu_shop_back_end.service.IImageService;
 import com.example.thy_thu_shop_back_end.service.IProductService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -56,6 +61,18 @@ public class ProductRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<List<FieldError>> addProductWithImages(@Validated @RequestBody ProductDTO productDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        Product product = new Product();
+        BeanUtils.copyProperties(productDTO, product);
+        this.productService.addProductWithImages(product);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+
     }
 
 }

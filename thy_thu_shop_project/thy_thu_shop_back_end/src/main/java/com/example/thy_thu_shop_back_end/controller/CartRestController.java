@@ -1,12 +1,13 @@
 package com.example.thy_thu_shop_back_end.controller;
 
 import com.example.thy_thu_shop_back_end.model.Cart;
+import com.example.thy_thu_shop_back_end.model.Image;
 import com.example.thy_thu_shop_back_end.model.Product;
 import com.example.thy_thu_shop_back_end.security_authentication.jwt.JwtFilter;
 import com.example.thy_thu_shop_back_end.security_authentication.jwt.JwtUtility;
 import com.example.thy_thu_shop_back_end.service.ICartService;
+import com.example.thy_thu_shop_back_end.service.IImageService;
 import com.example.thy_thu_shop_back_end.service.IProductService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 @RestController
@@ -30,16 +32,22 @@ public class CartRestController {
     @Autowired
     private ICartService cartService;
     @Autowired
+    private IImageService imageService;
+    @Autowired
     private JwtUtility jwtUtility;
 
     @GetMapping("/username")
     public ResponseEntity<List<Cart>> findAllCartByUsername(@RequestParam String username) {
         List<Cart> cartList = cartService.findCartByAccountUsername(username);
+
+
         if (cartList == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
         return new ResponseEntity<>(cartList, HttpStatus.OK);
     }
+
 
     @GetMapping("/username/{productId}")
     public ResponseEntity<Cart> findAllCartByUsername(@RequestParam String username, @PathVariable Long productId) {

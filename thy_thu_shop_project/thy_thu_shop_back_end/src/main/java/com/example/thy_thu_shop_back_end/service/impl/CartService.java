@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CartService implements ICartService {
@@ -55,6 +56,11 @@ public class CartService implements ICartService {
     @Override
     public void deleteByUsername(String username) {
         cartRepository.deleteCartByUsername(username);
+    }
+
+    @Override
+    public Set<Cart> findSetCartByAccountUsername(String username) {
+        return cartRepository.findSetCartByAccountUsername(username);
     }
 
 }

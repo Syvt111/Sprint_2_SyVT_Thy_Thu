@@ -28,6 +28,7 @@
                 </div>
 
                 <div class="card mb-3" *ngFor="let cart of carts | async">
+
                   <div class="card-body">
                     <div class=" row d-flex justify-content-between">
                       <div class="col-md-5 d-flex flex-row align-items-center name-img">
@@ -35,15 +36,15 @@
                           <ng-container *ngIf="cart.product.images">
                             <a routerLink="/product/detail/{{cart.product.productId}}">
                               <img
-                                [src]="cart.product.images[0].img"
+                                [src]="cart.product.images[0]?.img"
                                 class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                             </a>
                           </ng-container>
                         </div>
                         <div class="ms-3">
-                          <h5 class="small mb-0">{{cart.product.productName}}</h5>
-                          <p class="small mb-0">{{cart.product.description}}</p>
-                          <p class="small mb-0">{{cart.product.price | currency:'VND':'symbol':'1.0-0'}}</p>
+                          <h5 class="small mb-0">{{cart.product?.productName}}</h5>
+                          <p class="small mb-0">{{cart.product?.description}}</p>
+                          <p class="small mb-0">{{cart.product?.price | currency:'VND':'symbol':'1.0-0'}}</p>
                         </div>
                       </div>
                       <div class="col-md-7 d-flex flex-row align-items-center quantity-price">
@@ -57,7 +58,7 @@
                             </div>
                             <div class="col-md-4 d-flex justify-content-center">
                               <input class="form-control text-dark" #quantityUpdate
-                                     (change)="addToCartByQuantity(cart.product.productId,quantityUpdate.value)"
+                                     (change)="addToCartByQuantity(cart.product?.productId,quantityUpdate.value)"
                                      value="{{cart.quantity}}">
                             </div>
                             <div class="col-md-3 d-flex justify-content-center"><span class="btn btn-outline-success"
@@ -70,7 +71,7 @@
                         </div>
                         <div class="col-md-4 d-flex justify-content-center">
                           <h5
-                            class="mb-0 d-flex justify-content-center" style="margin-top: 10%">{{cart.product.price * cart.quantity | currency:'VND':'symbol':'1.0-0' }}</h5>
+                            class="mb-0 d-flex justify-content-center" style="margin-top: 10%">{{cart.product?.price * cart?.quantity | currency:'VND':'symbol':'1.0-0' }}</h5>
                         </div>
                         <div class="delete-icon col-md-2">
                           <span class="btn text-danger" style="font-size: x-large"
@@ -81,6 +82,7 @@
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
 

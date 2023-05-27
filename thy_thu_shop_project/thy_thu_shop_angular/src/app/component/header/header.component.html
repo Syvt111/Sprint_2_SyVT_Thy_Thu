@@ -31,7 +31,7 @@
       <div class="align-items-center" style="margin-left: 3%">
         <a class="navbar-brand text-success logo h1 align-self-center"
            routerLink="/home">
-          Thy Thư Shop
+          Thy Thư
         </a>
       </div>
     </div>
@@ -62,7 +62,7 @@
         <li class="nav-item">
           <a class="nav-link" href="contact.html">Phụ kiện khác</a>
         </li>
-        <div [hidden]="!isLoggedIn" class="nav-item d-flex align-items-center">
+        <div *ngIf="role =='ROLE_ADMIN'" class="nav-item d-flex align-items-center">
           <div class="dropdownUser">
             <div class="n-item d-flex align-items-center">
               <i class="bi bi-person-lines-fill mx-2"></i>
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div [hidden]="!isLoggedIn" class="nav-item d-flex align-items-center" style="margin-right: 2%">
+        <div *ngIf="role =='ROLE_ADMIN'" class="nav-item d-flex align-items-center" style="margin-right: 2%">
           <div class="dropdownUser">
             <div class="n-item d-flex align-items-center">
               <i class="bi bi-person-lines-fill mx-2"></i>
@@ -93,7 +93,7 @@
           </div>
         </div>
         <li class="nav-item d-flex align-items-center ">
-          <div class="d-flex align-items-center d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+          <div class="d-flex align-items-center d-lg-none flex-sm-fill mt-3 mb-4 col-6 pr-3">
             <div class="input-group">
               <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
               <div class="input-group-text">
@@ -109,7 +109,8 @@
       </ul>
     </div>
     <div class="col-md-2 row">
-      <div *ngIf="isLoggedIn"  class="col-3 d-flex align-items-center" style="padding: 0">
+      <div class="col-md-2"></div>
+      <div *ngIf="isLoggedIn" class="d-flex align-items-center col-md-2" style="padding: 0; margin-right: 0">
         <a class="nav-icon position-relative text-decoration-none d-flex align-items-center" routerLink="/product/cart">
           <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1 text-success" style="font-size: x-large"></i>
           <span
@@ -117,40 +118,38 @@
             style="font-size: medium">{{totalQuantity$ | async}}</span>
         </a>
       </div>
-      <div *ngIf="!isLoggedIn" class="d-flex align-items-center col-7">
-        <button class="btn"  (click)="logIn()"><h5>Đăng nhập</h5></button>
+      <div *ngIf="!isLoggedIn" class="d-flex align-items-center" style="margin-top: 5%; color:#eb5d1e">
+        <button class="btn" (click)="logIn()"><h5>Đăng nhập</h5></button>
       </div>
-      <div [hidden]="!isLoggedIn && accounts" class="d-flex align-items-center col-7">
+      <div [hidden]="!isLoggedIn && accounts" class="d-flex align-items-center col-md-7">
         <div class="dropdownUser">
           <div class="n-item d-flex align-items-center">
             <i class="bi bi-person-lines-fill mx-2"></i>
             <ng-container *ngIf="accounts">
               <img
                 [src]="accounts.avatar"
-                class="rounded-circle mb-3" style="width: 50px;"
+                class="rounded-circle mb-3" style="width: 50px; margin-left: 0"
                 alt="Avatar"/></ng-container>
-              <span style="color: #eb5d1e" class="m-2"><b> {{accountName}}</b></span>
+            <span style="color: #eb5d1e" class="m-1"><b> {{accountName}}</b></span>
 
           </div>
           <div class="dropdown-content p-0">
-            <div *ngIf="accounts" class=" getstarted" routerLink="/account">
+            <div *ngIf="accounts" class=" getstarted text-left" routerLink="/account">
               <button class="btn">Thông tin cá nhân</button>
             </div>
-            <div *ngIf="accounts" class=" getstarted" routerLink="/order/history">
+            <div *ngIf="accounts" class=" getstarted text-left" routerLink="/order/history">
               <button class="btn">Lịch sử mua hàng</button>
             </div>
-            <div *ngIf="accounts" class=" getstarted" routerLink="/security/change-password">
+            <div *ngIf="accounts" class=" getstarted text-left" routerLink="/security/change-password">
               <button class="btn">Đổi mật khẩu</button>
             </div>
-            <div *ngIf="accounts" class=" getstarted" (click)="logOut()">
+            <div *ngIf="accounts" class=" getstarted text-left" (click)="logOut()">
               <button class="btn">Đăng xuất</button>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="col-md-2">
-      </div>
+      <div class="col-md-1"></div>
     </div>
   </nav>
 </div>
